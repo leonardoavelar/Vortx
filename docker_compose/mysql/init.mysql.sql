@@ -5,7 +5,8 @@ use vxtel;
 create table IF NOT EXISTS Tarifa (
     Id int not null AUTO_INCREMENT PRIMARY KEY,
     DddOrigem char(3) not null,
-    DddDestino char(3) not null
+    DddDestino char(3) not null,
+    Valor double not null
 );
 
 create table IF NOT EXISTS Cliente (
