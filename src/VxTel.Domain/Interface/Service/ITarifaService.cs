@@ -1,8 +1,9 @@
-﻿using VxTel.Domain.Interface.Implementation;
+﻿using VxTel.Domain.Entity;
+using VxTel.Domain.Interface.Implementation;
 
 namespace VxTel.Domain.Interface.Service
 {
-    public interface ITarifaService : ITarifa
+    public interface ITarifaService : IBaseService<Tarifa>
     {
     }
 }

@@ -4,9 +4,9 @@ using VxTel.Infrastructure.Database;
 
 namespace VxTel.Infrastructure.Repository
 {
-    public sealed class TarifaRepository : BaseRepository<Tarifa>, ITarifaRepository
+    public sealed class ProdutoRepository : BaseRepository<Produto>, IProdutoRepository
     {
-        public TarifaRepository(MySqlDbContext mySqlDbContext) 
+        public ProdutoRepository(MySqlDbContext mySqlDbContext) 
             : base(mySqlDbContext)
         {
         }

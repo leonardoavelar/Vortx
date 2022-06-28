@@ -2,10 +2,8 @@
 
 namespace VxTel.Domain.Entity
 {
-    public partial class Contrato
+    public partial class Contrato : BaseEntity
     {
-        public int Id { get; private set; }
-
         public int IdCliente { get; private set; }
 
         public int IdProduto { get; private set; }
@@ -17,8 +15,8 @@ namespace VxTel.Domain.Entity
         public virtual Produto Produto { get; private set; }
 
         public Contrato(int id, int idCliente, int idProduto, DateTime dataContratacao)
+            : base(id)
         {
-            Id = id;
             IdCliente = idCliente;
             IdProduto = idProduto;
             DataContratacao = dataContratacao;

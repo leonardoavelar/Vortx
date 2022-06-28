@@ -28,9 +28,9 @@ namespace VxTel.Domain.Entity
 
         public virtual Cliente Cliente { get; private set; }
 
-        public Chamada (int id, int idCliente, string dddOrigem, long telefoneOrigem, 
-                        string dddDestino, long telefoneDestino, DateTime dataChamada, short situacao, 
-                        DateTime? dataHoraInicio, DateTime? dataHoraFim, TimeOnly? tempoDuracao, double? valor)
+        public Chamada(int id, int idCliente, string dddOrigem, long telefoneOrigem,
+                       string dddDestino, long telefoneDestino, DateTime dataChamada, short situacao,
+                       DateTime? dataHoraInicio, DateTime? dataHoraFim, TimeOnly? tempoDuracao, double? valor)
             : base(id)
         {
             IdCliente = idCliente;

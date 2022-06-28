@@ -2,10 +2,8 @@
 
 namespace VxTel.Domain.Entity
 {
-    public partial class Consumo
+    public partial class Consumo : BaseEntity
     {
-        public int Id { get; private set; }
-
         public int IdCliente { get; private set; }
 
         public TimeOnly TempoTotal { get; private set; }
@@ -15,8 +13,8 @@ namespace VxTel.Domain.Entity
         public virtual Cliente Cliente { get; private set; }
 
         public Consumo(int id, int idCliente, TimeOnly tempoTotal, double valor)
+            : base(id)
         {
-            Id = id;
             IdCliente = idCliente;
             TempoTotal = tempoTotal;
             Valor = valor;

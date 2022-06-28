@@ -2,10 +2,8 @@
 
 namespace VxTel.Domain.Entity
 {
-    public partial class Cliente
+    public partial class Cliente : BaseEntity
     {
-        public int Id { get; private set; }
-
         public string Nome { get; private set; }
 
         public string Documento { get; private set; }
@@ -19,8 +17,8 @@ namespace VxTel.Domain.Entity
         public virtual ICollection<TelefoneCliente> TelefonesCliente { get; private set; }
 
         public Cliente(int id, string nome, string documento)
+            : base(id)
         {
-            Id = id;
             Nome = nome;
             Documento = documento;
             Chamadas = new HashSet<Chamada>();

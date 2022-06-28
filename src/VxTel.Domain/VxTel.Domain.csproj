@@ -11,14 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Interface\Controller\ITarifaController.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interface\Controller\" />
     <Folder Include="DTO\" />
     <Folder Include="DTO\Response\" />
     <Folder Include="DTO\Request\" />
+    <Folder Include="Interface\Controller\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
 </Project>

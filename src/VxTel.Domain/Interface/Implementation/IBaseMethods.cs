@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using VxTel.Domain.Entity;
 
 namespace VxTel.Domain.Interface.Implementation
@@ -15,5 +16,7 @@ namespace VxTel.Domain.Interface.Implementation
         Task<bool> ExistAsync(int id);
 
         Task<T> FindByIdAsync(int id);
+
+        Task<IEnumerable<T>> FindAllAsync();
     }
 }

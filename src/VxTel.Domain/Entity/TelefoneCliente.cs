@@ -1,9 +1,7 @@
 ﻿namespace VxTel.Domain.Entity
 {
-    public partial class TelefoneCliente
+    public partial class TelefoneCliente : BaseEntity
     {
-        public int Id { get; private set; }
-
         public int IdCliente { get; private set; }
 
         public string Ddd { get; private set; }
@@ -13,8 +11,8 @@
         public virtual Cliente Cliente { get; private set; }
 
         public TelefoneCliente(int id, int idCliente, string ddd, long telefone)
+            : base(id)
         {
-            Id = id;
             IdCliente = idCliente;
             Ddd = ddd;
             Telefone = telefone;

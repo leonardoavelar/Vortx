@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VxTel.Domain.Entity;
 using VxTel.Domain.Interface.Implementation;
@@ -6,7 +7,7 @@ using VxTel.Infrastructure.Database;
 
 namespace VxTel.Infrastructure.Repository
 {
-    public class BaseRepository<T> : IBaseMethods<T>
+    public class BaseRepository<T> : IBaseRepository<T>
         where T : BaseEntity
     {
         protected readonly DbSet<T> data;
@@ -46,6 +47,12 @@ namespace VxTel.Infrastructure.Repository
         public async Task<T> FindByIdAsync(int id)
         {
             var result = await data.FirstOrDefaultAsync(x => x.Id == id);
+            return result;
+        }
+
+        public async Task<IEnumerable<T>> FindAllAsync()
+        {
+            var result = await data.ToListAsync();
             return result;
         }
     }
