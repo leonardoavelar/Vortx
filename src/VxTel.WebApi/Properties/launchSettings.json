@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:41483",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MYSQL_SERVER": "localhost",
+        "MYSQL_PORT": 3306,
+        "MYSQL_DATABASE": "vxtel",
+        "MYSQL_USER": "leonardo",
+        "MYSQL_PASSWORD": "leonardo"
+      }
+    },
+    "VxTel.WebApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MYSQL_SERVER": "localhost",
+        "MYSQL_PORT": 3306,
+        "MYSQL_DATABASE": "vxtel",
+        "MYSQL_USER": "leonardo",
+        "MYSQL_PASSWORD": "leonardo"
+      },
+      "applicationUrl": "http://localhost:5188",
+      "dotnetRunMessages": true
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true
+    }
+  }
+}

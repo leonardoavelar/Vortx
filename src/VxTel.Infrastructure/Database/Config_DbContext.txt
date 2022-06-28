@@ -1,0 +1,5 @@
+﻿Scaffold-DbContext "server=localhost;port=3306;database=vxtel;uid=leonardo;password=leonardo" MySql.EntityFrameworkCore -OutputDir Database -f
+
+
+server={MYSQL_SERVER};port={MYSQL_PORT};database={MYSQL_DATABASE};uid={MYSQL_USER};password={MYSQL_PASSWORD}
+server=localhost;port=3306;database=vxtel;uid=leonardo;password=leonardo

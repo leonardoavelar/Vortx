@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entity_Old\**" />
+    <EmbeddedResource Remove="Entity_Old\**" />
+    <None Remove="Entity_Old\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Interface\Controller\ITarifaController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interface\Controller\" />
+    <Folder Include="DTO\" />
+    <Folder Include="DTO\Response\" />
+    <Folder Include="DTO\Request\" />
+  </ItemGroup>
+
+</Project>
