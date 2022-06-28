@@ -12,6 +12,9 @@ Escopo (MVP)
 * Controlar consumo do cliente
 * Controlar conta de cliente
 * Realizar simulação do valor de chamada
+* Implementar Healtcheck
+* Implementar Swagger para documentação
+* Realizar testes unitários
 
 ---------------------
 Fora do Escopo
@@ -21,6 +24,9 @@ Fora do Escopo
 * Controlar acesso ao site
 * Controlar período de consumo do cliente
 * Controlar emissão de fatura
+* Validar dados que estão sendo manipulados
+* Implementar Middleware de Exception
+
 
 ---------------------
 Observações
