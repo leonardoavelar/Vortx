@@ -10,49 +10,49 @@ namespace VxTel.Infrastructure.Repository
     public class BaseRepository<T> : IBaseRepository<T>
         where T : BaseEntity
     {
-        protected readonly DbSet<T> data;
-        private readonly MySqlDbContext MySqlDbContext;
+        protected readonly DbSet<T> _data;
+        private readonly DatabaseContext _databaseContext;
 
-        public BaseRepository(MySqlDbContext mySqlDbContext)
+        public BaseRepository(DatabaseContext databaseContext)
         {
-            MySqlDbContext = mySqlDbContext;
-            data = MySqlDbContext.Set<T>();
+            _databaseContext = databaseContext;
+            _data = _databaseContext.Set<T>();
         }
 
         public async Task<T> InsertAsync(T entity)
         {
-            var result = await data.AddAsync(entity);
-            await MySqlDbContext.SaveChangesAsync();
+            var result = await _data.AddAsync(entity);
+            await _databaseContext.SaveChangesAsync();
             return result.Entity;
         }
 
         public async Task UpdateAsync(T entity)
         {
-            data.Update(entity);
-            await MySqlDbContext.SaveChangesAsync();
+            _data.Update(entity);
+            await _databaseContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var canal = await data.FindAsync(id);
-            data.Remove(canal);
-            await MySqlDbContext.SaveChangesAsync();
+            var canal = await _data.FindAsync(id);
+            _data.Remove(canal);
+            await _databaseContext.SaveChangesAsync();
         }
         public async Task<bool> ExistAsync(int id)
         {
-            var result = await data.AnyAsync(x => x.Id == id);
+            var result = await _data.AnyAsync(x => x.Id == id);
             return result;
         }
 
         public async Task<T> FindByIdAsync(int id)
         {
-            var result = await data.FirstOrDefaultAsync(x => x.Id == id);
+            var result = await _data.FirstOrDefaultAsync(x => x.Id == id);
             return result;
         }
 
         public async Task<IEnumerable<T>> FindAllAsync()
         {
-            var result = await data.ToListAsync();
+            var result = await _data.ToListAsync();
             return result;
         }
     }

@@ -6,8 +6,8 @@ namespace VxTel.Infrastructure.Repository
 {
     public sealed class ContratoRepository : BaseRepository<Contrato>, IContratoRepository
     {
-        public ContratoRepository(MySqlDbContext mySqlDbContext) 
-            : base(mySqlDbContext)
+        public ContratoRepository(DatabaseContext databaseContext) 
+            : base(databaseContext)
         {
         }
     }

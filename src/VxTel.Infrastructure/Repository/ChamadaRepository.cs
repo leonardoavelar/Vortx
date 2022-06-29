@@ -6,8 +6,8 @@ namespace VxTel.Infrastructure.Repository
 {
     public sealed class ChamadaRepository : BaseRepository<Chamada>, IChamadaRepository
     {
-        public ChamadaRepository(MySqlDbContext mySqlDbContext) 
-            : base(mySqlDbContext)
+        public ChamadaRepository(DatabaseContext databaseContext) 
+            : base(databaseContext)
         {
         }
     }

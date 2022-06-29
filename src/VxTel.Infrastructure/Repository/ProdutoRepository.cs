@@ -6,8 +6,8 @@ namespace VxTel.Infrastructure.Repository
 {
     public sealed class ProdutoRepository : BaseRepository<Produto>, IProdutoRepository
     {
-        public ProdutoRepository(MySqlDbContext mySqlDbContext) 
-            : base(mySqlDbContext)
+        public ProdutoRepository(DatabaseContext databaseContext) 
+            : base(databaseContext)
         {
         }
     }

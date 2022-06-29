@@ -4,8 +4,6 @@ using VxTel.Domain.Interface.Implementation;
 
 namespace VxTel.WebApiOLD.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
     public class BaseController<T> : ControllerBase, IBaseApiController<T>
         where  T : BaseEntity
     {

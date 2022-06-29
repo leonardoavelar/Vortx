@@ -8,9 +8,10 @@ namespace VxTel.Configuration.Extension
         public static void ConfigureServicesDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = ConfigureConnectionString(configuration.GetConnectionString("MySql"));
-            var server = ServerVersion.AutoDetect(connectionString);
+            var server = ServerVersion.Create(new Version(), Pomelo.EntityFrameworkCore.MySql.Infrastructure.ServerType.MySql);
+            //var server = ServerVersion.AutoDetect(connectionString);
 
-            services.AddDbContextFactory<MySqlDbContext>(options => options.UseMySql(connectionString, server), ServiceLifetime.Singleton);
+            services.AddDbContextFactory<DatabaseContext>(options => options.UseMySql(connectionString, server), ServiceLifetime.Singleton);
         }
 
         private static string ConfigureConnectionString(string connectionString)

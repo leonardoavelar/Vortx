@@ -6,8 +6,8 @@ namespace VxTel.Infrastructure.Repository
 {
     public sealed class TelefoneClienteRepository : BaseRepository<TelefoneCliente>, ITelefoneClienteRepository
     {
-        public TelefoneClienteRepository(MySqlDbContext mySqlDbContext) 
-            : base(mySqlDbContext)
+        public TelefoneClienteRepository(DatabaseContext databaseContext) 
+            : base(databaseContext)
         {
         }
     }

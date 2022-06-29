@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VxTel.Domain\VxTel.Domain.csproj" />
-    <ProjectReference Include="..\VxTel.Infrastructure\VxTel.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

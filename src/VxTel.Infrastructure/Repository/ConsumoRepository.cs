@@ -6,8 +6,8 @@ namespace VxTel.Infrastructure.Repository
 {
     public sealed class ConsumoRepository : BaseRepository<Consumo>, IConsumoRepository
     {
-        public ConsumoRepository(MySqlDbContext mySqlDbContext) 
-            : base(mySqlDbContext)
+        public ConsumoRepository(DatabaseContext databaseContext) 
+            : base(databaseContext)
         {
         }
     }

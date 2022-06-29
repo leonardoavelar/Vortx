@@ -1,16 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using VxTel.Domain.Entity;
 
 namespace VxTel.Infrastructure.Database
 {
-    public class MySqlDbContext : DbContext
+    public class DatabaseContext : DbContext
     {
-        public MySqlDbContext(DbContextOptions<MySqlDbContext> options)
-            : base(options)
-        {
-        }
-
         public DbSet<Chamada> Chamada { get; }
 
         public DbSet<Cliente> Cliente { get; }
@@ -25,11 +19,9 @@ namespace VxTel.Infrastructure.Database
 
         public DbSet<TelefoneCliente> TelefoneCliente { get; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options)
+            : base(options)
         {
-            var connectionString = "server=localhost;port=3306;database=vxtel;uid=leonardo;password=leonardo";
-            var server = ServerVersion.AutoDetect(connectionString);
-            optionsBuilder.UseMySql(connectionString, server);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

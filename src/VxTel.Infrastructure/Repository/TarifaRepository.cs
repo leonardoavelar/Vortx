@@ -6,8 +6,8 @@ namespace VxTel.Infrastructure.Repository
 {
     public sealed class TarifaRepository : BaseRepository<Tarifa>, ITarifaRepository
     {
-        public TarifaRepository(MySqlDbContext mySqlDbContext) 
-            : base(mySqlDbContext)
+        public TarifaRepository(DatabaseContext databaseContext) 
+            : base(databaseContext)
         {
         }
     }
