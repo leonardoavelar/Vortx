@@ -1,6 +1,9 @@
 ﻿using VxTel.Application.Service;
+using VxTel.Application.UseCase;
 using VxTel.Domain.Interface.Repository;
 using VxTel.Domain.Interface.Service;
+using VxTel.Domain.Interface.UseCase;
+using VxTel.Domain.Mapping;
 using VxTel.Infrastructure.Repository;
 
 namespace Vxtel.IoC.DI
@@ -26,6 +29,13 @@ namespace Vxtel.IoC.DI
             services.AddTransient<IProdutoService, ProdutoService>();
             services.AddTransient<ITarifaService, TarifaService>();
             services.AddTransient<ITelefoneClienteService, TelefoneClienteService>();
+
+            // UseCases
+            services.AddTransient<IClienteUseCase, ClienteUseCase>();
+            services.AddTransient<IConsumoUseCase, ConsumoUseCase>();
+
+            // AutoMapper
+            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
         }
     }
 }

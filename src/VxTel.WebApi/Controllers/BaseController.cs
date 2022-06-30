@@ -1,51 +1,56 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VxTel.Domain.DTO;
 using VxTel.Domain.Entity;
 using VxTel.Domain.Interface.Implementation;
 
-namespace VxTel.WebApiOLD.Controllers
+namespace VxTel.WebApi.Controllers
 {
-    public class BaseController<T> : ControllerBase, IBaseApiController<T>
-        where  T : BaseEntity
+    public class BaseController<D, E> : ControllerBase, IBaseApiController<D>
+        where D : BaseDTO
+        where E : BaseEntity
     {
-        private readonly IBaseService<T> BaseService;
+        private readonly IBaseService<D, E> _baseService;
 
-        public BaseController(IBaseService<T> baseService)
+        public BaseController(IBaseService<D, E> baseService)
         {
-            BaseService = baseService;
+            _baseService = baseService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<T>> Get()
+        public async Task<IActionResult> Get()
         {
-            var result = await BaseService.FindAllAsync();
-            return result;
+            var result = await _baseService.FindAllAsync();
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<T> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var result = await BaseService.FindByIdAsync(id);
-            return result;
+            var result = await _baseService.FindByIdAsync(id);
+            return Ok(result);
         }
 
         [HttpPost]
-        public async Task<T> Post([FromBody] T entity)
+        public async Task<IActionResult> Post([FromBody] D dto)
         {
-            var result = await BaseService.InsertAsync(entity);
-            return result;
+            var result = await _baseService.InsertAsync(dto);
+            return Ok(result);
         }
 
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] T entity)
+        public async Task<IActionResult> Put(int id, [FromBody] D dto)
         {
-            if (entity.Id == id)
-                await BaseService.UpdateAsync(entity);
+            if (dto.Id == id)
+                await _baseService.UpdateAsync(dto);
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            await BaseService.DeleteAsync(id);
+            await _baseService.DeleteAsync(id);
+            return Ok();
         }
     }
 }

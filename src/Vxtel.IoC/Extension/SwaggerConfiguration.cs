@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace VxTel.Configuration.Extension
+namespace Vxtel.IoC.Extension
 {
     public static class SwaggerConfiguration
     {

@@ -3,7 +3,7 @@ using App.Metrics.AspNetCore;
 using App.Metrics.Formatters.Prometheus;
 using System.Reflection;
 using Vxtel.IoC.DI;
-using VxTel.Configuration.Extension;
+using Vxtel.IoC.Extension;
 
 #region Builder
 

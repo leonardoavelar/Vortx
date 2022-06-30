@@ -16,7 +16,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "MYSQL_SERVER": "localhost",
-        "MYSQL_PORT": 3306,
+        "MYSQL_PORT": "3306",
         "MYSQL_DATABASE": "vxtel",
         "MYSQL_USER": "leonardo",
         "MYSQL_PASSWORD": "leonardo"
@@ -29,7 +29,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "MYSQL_SERVER": "localhost",
-        "MYSQL_PORT": 3306,
+        "MYSQL_PORT": "3306",
         "MYSQL_DATABASE": "vxtel",
         "MYSQL_USER": "leonardo",
         "MYSQL_PASSWORD": "leonardo"

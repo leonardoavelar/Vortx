@@ -1,21 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using VxTel.Domain.Entity;
+using VxTel.Domain.DTO;
 
 namespace VxTel.Domain.Interface.Implementation
 {
-    public interface IBaseApiController<T>
-        where T : BaseEntity
+    public interface IBaseApiController<D>
+        where D : BaseDTO
     {
-        Task<IEnumerable<T>> Get();
+        Task<IActionResult> Get();
 
-        Task<T> Get(int id);
+        Task<IActionResult> Get(int id);
 
-        Task<T> Post([FromBody] T entity);
+        Task<IActionResult> Post([FromBody] D dto);
 
-        Task Put(int id, [FromBody] T entity);
+        Task<IActionResult> Put(int id, [FromBody] D dto);
 
-        Task Delete(int id);
+        Task<IActionResult> Delete(int id);
     }
 }

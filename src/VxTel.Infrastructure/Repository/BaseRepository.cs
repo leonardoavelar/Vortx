@@ -7,52 +7,58 @@ using VxTel.Infrastructure.Database;
 
 namespace VxTel.Infrastructure.Repository
 {
-    public class BaseRepository<T> : IBaseRepository<T>
-        where T : BaseEntity
+    public abstract class BaseRepository<E> : IBaseRepository<E>
+        where E : BaseEntity
     {
-        protected readonly DbSet<T> _data;
-        private readonly DatabaseContext _databaseContext;
+        protected readonly DbSet<E> Data;
+        private readonly DatabaseContext DatabaseContext;
 
         public BaseRepository(DatabaseContext databaseContext)
         {
-            _databaseContext = databaseContext;
-            _data = _databaseContext.Set<T>();
+            DatabaseContext = databaseContext;
+            Data = DatabaseContext.Set<E>();
         }
 
-        public async Task<T> InsertAsync(T entity)
+        public async Task<E> InsertAsync(E entity)
         {
-            var result = await _data.AddAsync(entity);
-            await _databaseContext.SaveChangesAsync();
+            var result = await Data.AddAsync(entity);
+            await DatabaseContext.SaveChangesAsync();
             return result.Entity;
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task UpdateAsync(E entity)
         {
-            _data.Update(entity);
-            await _databaseContext.SaveChangesAsync();
+            Data.Update(entity);
+            await DatabaseContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var canal = await _data.FindAsync(id);
-            _data.Remove(canal);
-            await _databaseContext.SaveChangesAsync();
+            var canal = await Data.FindAsync(id);
+            Data.Remove(canal);
+            await DatabaseContext.SaveChangesAsync();
         }
         public async Task<bool> ExistAsync(int id)
         {
-            var result = await _data.AnyAsync(x => x.Id == id);
+            var result = await Data.AsNoTracking()
+                .AnyAsync(x => x.Id == id);
+
             return result;
         }
 
-        public async Task<T> FindByIdAsync(int id)
+        public async Task<E> FindByIdAsync(int id)
         {
-            var result = await _data.FirstOrDefaultAsync(x => x.Id == id);
+            var result = await Data.AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+
             return result;
         }
 
-        public async Task<IEnumerable<T>> FindAllAsync()
+        public async Task<IEnumerable<E>> FindAllAsync()
         {
-            var result = await _data.ToListAsync();
+            var result = await Data.AsNoTracking()
+                .ToListAsync();
+
             return result;
         }
     }

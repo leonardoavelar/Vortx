@@ -1,13 +1,15 @@
-﻿using VxTel.Domain.Entity;
+﻿using AutoMapper;
+using VxTel.Domain.Entity;
 using VxTel.Domain.Interface.Repository;
 using VxTel.Domain.Interface.Service;
+using VxTel.Domain.DTO;
 
 namespace VxTel.Application.Service
 {
-    public sealed class ChamadaService : BaseService<Chamada>, IChamadaService
+    public sealed class ChamadaService : BaseService<ChamadaDTO, Chamada>, IChamadaService
     {
-        public ChamadaService(IChamadaRepository chamadaRepository)
-            : base(chamadaRepository)
+        public ChamadaService(IMapper mapper, IChamadaRepository chamadaRepository)
+            : base(mapper, chamadaRepository)
         {
         }
     }

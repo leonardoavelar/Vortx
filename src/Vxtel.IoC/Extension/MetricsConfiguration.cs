@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace VxTel.Configuration.Extension
+namespace Vxtel.IoC.Extension
 {
     public static class MetricsConfiguration
     {

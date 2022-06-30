@@ -5,19 +5,19 @@ namespace VxTel.Infrastructure.Database
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Chamada> Chamada { get; }
+        public virtual DbSet<Chamada> Chamada { get; }
 
-        public DbSet<Cliente> Cliente { get; }
+        public virtual DbSet<Cliente> Cliente { get; }
 
-        public DbSet<Consumo> Consumo { get; }
+        public virtual DbSet<Consumo> Consumo { get; }
 
-        public DbSet<Contrato> Contrato { get; }
+        public virtual DbSet<Contrato> Contrato { get; }
 
-        public DbSet<Produto> Produto { get; }
+        public virtual DbSet<Produto> Produto { get; }
 
-        public DbSet<Tarifa> Tarifa { get; }
+        public virtual DbSet<Tarifa> Tarifa { get; }
 
-        public DbSet<TelefoneCliente> TelefoneCliente { get; }
+        public virtual DbSet<TelefoneCliente> TelefoneCliente { get; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
@@ -32,7 +32,7 @@ namespace VxTel.Infrastructure.Database
             {
                 entity.ToTable("Chamada");
 
-                entity.HasIndex(e => e.IdCliente, "IdCliente");
+                entity.HasIndex(e => e.ClienteId, "ClienteId");
 
                 entity.Property(e => e.DataChamada).HasColumnType("datetime");
 
@@ -54,7 +54,7 @@ namespace VxTel.Infrastructure.Database
 
                 entity.HasOne(d => d.Cliente)
                     .WithMany(p => p.Chamadas)
-                    .HasForeignKey(d => d.IdCliente);
+                    .HasForeignKey(d => d.ClienteId);
             });
 
             modelBuilder.Entity<Cliente>(entity =>
@@ -74,32 +74,32 @@ namespace VxTel.Infrastructure.Database
             {
                 entity.ToTable("Consumo");
 
-                entity.HasIndex(e => e.IdCliente, "IdCliente");
+                entity.HasIndex(e => e.ClienteId, "ClienteId");
 
                 entity.Property(e => e.TempoTotal).HasColumnType("time");
 
                 entity.HasOne(d => d.Cliente)
                     .WithMany(p => p.Consumos)
-                    .HasForeignKey(d => d.IdCliente);
+                    .HasForeignKey(d => d.ClienteId);
             });
 
             modelBuilder.Entity<Contrato>(entity =>
             {
                 entity.ToTable("Contrato");
 
-                entity.HasIndex(e => e.IdCliente, "IdCliente");
+                entity.HasIndex(e => e.ClienteId, "ClienteId");
 
-                entity.HasIndex(e => e.IdProduto, "IdProduto");
+                entity.HasIndex(e => e.ProdutoId, "ProdutoId");
 
                 entity.Property(e => e.DataContratacao).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Cliente)
                     .WithMany(p => p.Contratos)
-                    .HasForeignKey(d => d.IdCliente);
+                    .HasForeignKey(d => d.ClienteId);
 
                 entity.HasOne(d => d.Produto)
                     .WithMany(p => p.Contratos)
-                    .HasForeignKey(d => d.IdProduto);
+                    .HasForeignKey(d => d.ProdutoId);
             });
 
             modelBuilder.Entity<Produto>(entity =>
@@ -132,7 +132,7 @@ namespace VxTel.Infrastructure.Database
             {
                 entity.ToTable("TelefoneCliente");
 
-                entity.HasIndex(e => e.IdCliente, "IdCliente");
+                entity.HasIndex(e => e.ClienteId, "ClienteId");
 
                 entity.Property(e => e.Ddd)
                     .IsRequired()
@@ -141,7 +141,7 @@ namespace VxTel.Infrastructure.Database
 
                 entity.HasOne(d => d.Cliente)
                     .WithMany(p => p.TelefonesCliente)
-                    .HasForeignKey(d => d.IdCliente);
+                    .HasForeignKey(d => d.ClienteId);
             });
         }
     }

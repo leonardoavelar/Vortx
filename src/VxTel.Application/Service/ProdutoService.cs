@@ -1,13 +1,15 @@
-﻿using VxTel.Domain.Entity;
+﻿using AutoMapper;
+using VxTel.Domain.DTO;
+using VxTel.Domain.Entity;
 using VxTel.Domain.Interface.Repository;
 using VxTel.Domain.Interface.Service;
 
 namespace VxTel.Application.Service
 {
-    public sealed class ProdutoService : BaseService<Produto>, IProdutoService
+    public sealed class ProdutoService : BaseService<ProdutoDTO, Produto>, IProdutoService
     {
-        public ProdutoService(IProdutoRepository produtoRepository)
-            : base(produtoRepository)
+        public ProdutoService(IMapper mapper, IProdutoRepository produtoRepository)
+            : base(mapper, produtoRepository)
         {
         }
     }

@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VxTel.Application", "VxTel.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VxTel.WebApi", "VxTel.WebApi\VxTel.WebApi.csproj", "{FA9E2900-CDC7-4F9B-A491-2977BED63D2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VxTel.Test", "VxTel.Test\VxTel.Test.csproj", "{BB5C8575-E59B-4C59-B79A-FF21CE87B213}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VxTel.WebSite", "VxTel.WebSite\VxTel.WebSite.csproj", "{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{FA9E2900-CDC7-4F9B-A491-2977BED63D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA9E2900-CDC7-4F9B-A491-2977BED63D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA9E2900-CDC7-4F9B-A491-2977BED63D2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5C8575-E59B-4C59-B79A-FF21CE87B213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5C8575-E59B-4C59-B79A-FF21CE87B213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5C8575-E59B-4C59-B79A-FF21CE87B213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5C8575-E59B-4C59-B79A-FF21CE87B213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VxTel.Infrastructure.Database;
 
-namespace VxTel.Configuration.Extension
+namespace Vxtel.IoC.Extension
 {
     public static class DatabaseConfiguration
     {
