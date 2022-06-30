@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VxTel.Application", "VxTel.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VxTel.WebApi", "VxTel.WebApi\VxTel.WebApi.csproj", "{FA9E2900-CDC7-4F9B-A491-2977BED63D2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VxTel.Test", "VxTel.Test\VxTel.Test.csproj", "{BB5C8575-E59B-4C59-B79A-FF21CE87B213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VxTel.Test", "VxTel.Test\VxTel.Test.csproj", "{BB5C8575-E59B-4C59-B79A-FF21CE87B213}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VxTel.WebSite", "VxTel.WebSite\VxTel.WebSite.csproj", "{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clinica.WebApp", "Clinica.WebApp\Clinica.WebApp.csproj", "{03619C2B-7B27-4ED1-ACA7-429B1C738472}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VxTel.WebSite", "VxTel.WebSite\VxTel.WebSite.csproj", "{BD75E7EE-D080-460D-99B3-51ACD51D09CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +49,14 @@ Global
 		{BB5C8575-E59B-4C59-B79A-FF21CE87B213}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB5C8575-E59B-4C59-B79A-FF21CE87B213}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB5C8575-E59B-4C59-B79A-FF21CE87B213}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4B8FBE8-D2D9-41CF-8B5E-25E3599695E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03619C2B-7B27-4ED1-ACA7-429B1C738472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03619C2B-7B27-4ED1-ACA7-429B1C738472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03619C2B-7B27-4ED1-ACA7-429B1C738472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03619C2B-7B27-4ED1-ACA7-429B1C738472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD75E7EE-D080-460D-99B3-51ACD51D09CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD75E7EE-D080-460D-99B3-51ACD51D09CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD75E7EE-D080-460D-99B3-51ACD51D09CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD75E7EE-D080-460D-99B3-51ACD51D09CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

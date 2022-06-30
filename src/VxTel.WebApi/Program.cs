@@ -9,7 +9,6 @@ using Vxtel.IoC.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 IMetricsRoot Metrics = AppMetrics.CreateDefaultBuilder()
     .OutputMetrics.AsPrometheusPlainText()
     .OutputMetrics.AsPrometheusProtobuf()

@@ -9,7 +9,6 @@ using Vxtel.IoC.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 IMetricsRoot Metrics = AppMetrics.CreateDefaultBuilder()
     .OutputMetrics.AsPrometheusPlainText()
     .OutputMetrics.AsPrometheusProtobuf()
@@ -33,17 +32,19 @@ builder.Host.ConfigureAppConfiguration((hostContext, config) =>
     .UseMetricsEndpoints()
     .UseMetricsWebTracking();
 
-builder.Services.AddRazorPages();
-
 #endregion
 
 #region Services
 
 var configuration = builder.Configuration;
 
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
 // Customized Services
 builder.Services.ConfigureServicesMetrics();
 builder.Services.ConfigureServicesHealthCheck();
+builder.Services.ConfigureServicesSwagger();
 builder.Services.ConfigureServicesDatabase(configuration);
 
 // Dependency Injection
@@ -51,25 +52,31 @@ builder.Services.ConfigureDependencies();
 
 #endregion
 
-
-#region App 
+#region App
 
 var app = builder.Build();
+var env = builder.Environment;
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
+    app.UseExceptionHandler("/Home/Error");
 }
+
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
-app.MapRazorPages();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 // Customized Apps
 app.ConfigureMetrics();
 app.ConfigureHealthCheck();
+app.ConfigureSwagger(env);
 
 app.Run();
+
 
 #endregion
