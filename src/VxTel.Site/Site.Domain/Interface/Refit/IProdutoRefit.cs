@@ -14,13 +14,13 @@ namespace VxTel.Site.Domain.Interface.Refit
         [Get("/Produto/{id}")]
         Task<ProdutoDTO> Get(int id);
 
-        [Get("/Produto")]
+        [Post("/Produto")]
         Task<ProdutoDTO> Post([FromBody] ProdutoDTO dto);
 
-        [Get("/Produto/{id}")]
+        [Put("/Produto/{id}")]
         Task Put(int id, [FromBody] ProdutoDTO dto);
 
-        [Get("/Produto/{id}")]
+        [Delete("/Produto/{id}")]
         Task Delete(int id);
     }
 }

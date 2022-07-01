@@ -14,13 +14,13 @@ namespace VxTel.Site.Domain.Interface.Refit
         [Get("/Chamada/{id}")]
         Task<ChamadaDTO> Get(int id);
 
-        [Get("/Chamada")]
+        [Post("/Chamada")]
         Task<ChamadaDTO> Post([FromBody] ChamadaDTO dto);
 
-        [Get("/Chamada/{id}")]
+        [Put("/Chamada/{id}")]
         Task Put(int id, [FromBody] ChamadaDTO dto);
 
-        [Get("/Chamada/{id}")]
+        [Delete("/Chamada/{id}")]
         Task Delete(int id);
     }
 }
