@@ -1,0 +1,41 @@
+﻿@model IEnumerable<VxTel.Site.Domain.DTO.TarifaDTO>
+
+<div>
+    <div class="row">
+        <h2>Tarifa</h2>
+    </div>
+
+    <div>
+        <a asp-action="Create" class="btn btn-primary pull-left h2">Create New</a>
+    </div>
+
+    <div class="mt-4">
+        <table class="table table-hover" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">@Html.DisplayNameFor(model => model.Id)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.DddOrigem)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.DddDestino)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Valor)</th>
+                    <th scope="col" class="actions"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DddOrigem)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DddDestino)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                        <td class="actions">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-sm">Details</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

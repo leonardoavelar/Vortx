@@ -1,0 +1,44 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:42409",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "Site": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MYSQL_SERVER": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_DATABASE": "vxtel",
+        "MYSQL_USER": "leonardo",
+        "MYSQL_PASSWORD": "leonardo"
+      },
+      "applicationUrl": "http://localhost:5192",
+      "dotnetRunMessages": true
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MYSQL_SERVER": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_DATABASE": "vxtel",
+        "MYSQL_USER": "leonardo",
+        "MYSQL_PASSWORD": "leonardo"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true
+    }
+  }
+}
