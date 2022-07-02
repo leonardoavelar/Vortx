@@ -19,7 +19,7 @@ namespace VxTel.Api.Test.Domain.Entity
         public void CreateEntity_ValidateSetParameters_OK()
         {
             var date = DateTime.Now;
-            var dto = new ChamadaDTO(1, 1001, "031", 123456789, "011", 987654321, date, date, date, new TimeSpan(1, 30, 0), 123.45);
+            var dto = new ChamadaDTO(1, 1001, "031", 123456789, "011", 987654321, date, date, new TimeSpan(1, 30, 0), 123.45);
             var entity = _mapper.Map<Chamada>(dto);
 
             Assert.Multiple(() =>
@@ -30,7 +30,6 @@ namespace VxTel.Api.Test.Domain.Entity
                 Assert.That(entity.TelefoneOrigem, Is.EqualTo(123456789));
                 Assert.That(entity.DddDestino, Is.EqualTo("011"));
                 Assert.That(entity.TelefoneDestino, Is.EqualTo(987654321));
-                Assert.That(entity.DataChamada, Is.EqualTo(date));
                 Assert.That(entity.DataHoraInicio, Is.EqualTo(date));
                 Assert.That(entity.DataHoraFim, Is.EqualTo(date));
                 Assert.That(entity.TempoDuracao, Is.Not.Null);

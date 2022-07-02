@@ -52,8 +52,6 @@ namespace VxTel.Api.Infrastructure.Database
                     .IsRequired()
                     .HasMaxLength(9);
 
-                entity.Property(e => e.DataChamada).HasColumnType("datetime");
-
                 entity.Property(e => e.DataHoraInicio).HasColumnType("datetime");
 
                 entity.Property(e => e.DataHoraFim).HasColumnType("datetime");

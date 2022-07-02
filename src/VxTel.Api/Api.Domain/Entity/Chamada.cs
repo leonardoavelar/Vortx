@@ -16,8 +16,6 @@ namespace VxTel.Api.Domain.Entity
 
         public long TelefoneDestino { get; private set; }
 
-        public DateTime DataChamada { get; private set; }
-
         public DateTime? DataHoraInicio { get; private set; }
 
         public DateTime? DataHoraFim { get; private set; }

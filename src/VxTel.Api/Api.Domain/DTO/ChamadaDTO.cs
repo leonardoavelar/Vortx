@@ -17,8 +17,6 @@ namespace VxTel.Api.Domain.DTO
 
         public long TelefoneDestino { get; set; }
 
-        public DateTime DataChamada { get; set; }
-
         public DateTime DataHoraInicio { get; set; }
 
         public DateTime? DataHoraFim { get; set; }
@@ -30,30 +28,26 @@ namespace VxTel.Api.Domain.DTO
         public ChamadaDTO() { }
 
         public ChamadaDTO(int id, int clienteId, string dddOrigem, long telefoneOrigem,
-                          string dddDestino, long telefoneDestino, DateTime dataChamada,
-                          DateTime dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
+                          string dddDestino, long telefoneDestino, DateTime dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
             : base(id)
         {
-            SetValue(clienteId, dddOrigem, telefoneOrigem, dddDestino, telefoneDestino, dataChamada, dataHoraInicio, dataHoraFim, tempoDuracao, valor);
+            SetValue(clienteId, dddOrigem, telefoneOrigem, dddDestino, telefoneDestino, dataHoraInicio, dataHoraFim, tempoDuracao, valor);
         }
 
         public ChamadaDTO(int clienteId, string dddOrigem, long telefoneOrigem,
-                   string dddDestino, long telefoneDestino, DateTime dataChamada,
-                   DateTime dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
+                   string dddDestino, long telefoneDestino, DateTime dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
         {
-            SetValue(clienteId, dddOrigem, telefoneOrigem, dddDestino, telefoneDestino, dataChamada, dataHoraInicio, dataHoraFim, tempoDuracao, valor);
+            SetValue(clienteId, dddOrigem, telefoneOrigem, dddDestino, telefoneDestino, dataHoraInicio, dataHoraFim, tempoDuracao, valor);
         }
 
         private void SetValue(int clienteId, string dddOrigem, long telefoneOrigem,
-                              string dddDestino, long telefoneDestino, DateTime dataChamada,
-                              DateTime dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
+                              string dddDestino, long telefoneDestino, DateTime dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
         {
             ClienteId = clienteId;
             DddOrigem = dddOrigem;
             TelefoneOrigem = telefoneOrigem;
             DddDestino = dddDestino;
             TelefoneDestino = telefoneDestino;
-            DataChamada = dataChamada;
             DataHoraInicio = dataHoraInicio;
             DataHoraFim = dataHoraFim;
             TempoDuracao = tempoDuracao;
@@ -72,7 +66,6 @@ namespace VxTel.Api.Domain.DTO
                    TelefoneOrigem == chamada.TelefoneOrigem &&
                    DddDestino == chamada.DddDestino &&
                    TelefoneDestino == chamada.TelefoneDestino &&
-                   DataChamada == chamada.DataChamada &&
                    DataHoraInicio == chamada.DataHoraInicio &&
                    DataHoraFim == chamada.DataHoraFim &&
                    TempoDuracao == chamada.TempoDuracao &&
@@ -88,7 +81,6 @@ namespace VxTel.Api.Domain.DTO
             hash.Add(TelefoneOrigem);
             hash.Add(DddDestino);
             hash.Add(TelefoneDestino);
-            hash.Add(DataChamada);
             hash.Add(DataHoraInicio);
             hash.Add(DataHoraFim);
             hash.Add(TempoDuracao);
