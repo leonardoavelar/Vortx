@@ -6,6 +6,6 @@ namespace VxTel.Api.Domain.Interface.Repository
 {
     public interface IClienteRepository : IBaseRepository<Cliente>
     {
-        Task<Cliente> RetornaClienteContratoTelefone(int id);
+        Task<Cliente> RetornaClienteContrato(int id);
     }
 }

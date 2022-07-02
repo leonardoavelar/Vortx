@@ -18,9 +18,9 @@ namespace VxTel.Api.Controllers
         }
 
         [HttpGet("{id}/Dados")]
-        public async Task<ClienteDTO> GetClienteContratoTelefone(int id)
+        public async Task<ClienteDTO> GetClienteContrato(int id)
         {
-            var result = await _clienteService.RetornaClienteContratoTelefone(id);
+            var result = await _clienteService.RetornaClienteContrato(id);
             return result;
         }
     }

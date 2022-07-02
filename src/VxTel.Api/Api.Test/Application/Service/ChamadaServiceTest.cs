@@ -2,7 +2,6 @@
 using VxTel.Api.Application.Service;
 using VxTel.Api.Domain.DTO;
 using VxTel.Api.Domain.Entity;
-using VxTel.Api.Domain.Enum;
 using VxTel.Api.Infrastructure.Repository;
 using VxTel.Api.Test.Integration;
 
@@ -18,15 +17,15 @@ namespace VxTel.Api.Test.Application.Service
         public ChamadaServiceTest(IMapper mapper)
             : base(new ChamadaService(mapper, new ChamadaRepository(DatabaseContextExtension.GetDatabaseContextTestAsync())))
         {
-            chamada = new ChamadaDTO(1, "031", 987654321, "011", 123456789, DateTime.Now, SituacaoChamada.NaoAtendida, DateTime.Now, DateTime.Now, new TimeSpan(), 0);
+            chamada = new ChamadaDTO(1, "031", 987654321, "011", 123456789, DateTime.Now, DateTime.Now, DateTime.Now, new TimeSpan(), 0);
 
-            novaChamada = new ChamadaDTO(1, "021", 987654321, "011", 654915651, DateTime.Now, SituacaoChamada.Encerrada, DateTime.Now, DateTime.Now, new TimeSpan(0, 30, 0), 15);
+            novaChamada = new ChamadaDTO(1, "021", 987654321, "011", 654915651, DateTime.Now, DateTime.Now, DateTime.Now, new TimeSpan(0, 30, 0), 15);
 
             listChamada = new List<ChamadaDTO>()
             {
-                new ChamadaDTO(16, "031", 987654321, "011", 987654165, DateTime.Now, SituacaoChamada.NaoAtendida, DateTime.Now, DateTime.Now, new TimeSpan(), 0),
-                new ChamadaDTO(12, "031", 987654321, "011", 312156544, DateTime.Now, SituacaoChamada.EmConversa, DateTime.Now, DateTime.Now, new TimeSpan(), 0),
-                new ChamadaDTO(15, "031", 987654321, "011", 156987156, DateTime.Now, SituacaoChamada.Chamando, DateTime.Now, DateTime.Now, new TimeSpan(), 0)
+                new ChamadaDTO(16, "031", 987654321, "011", 987654165, DateTime.Now, DateTime.Now, DateTime.Now, new TimeSpan(), 0),
+                new ChamadaDTO(12, "031", 987654321, "011", 312156544, DateTime.Now, DateTime.Now, DateTime.Now, new TimeSpan(), 0),
+                new ChamadaDTO(15, "031", 987654321, "011", 156987156, DateTime.Now, DateTime.Now, DateTime.Now, new TimeSpan(), 0)
         };
         }
 

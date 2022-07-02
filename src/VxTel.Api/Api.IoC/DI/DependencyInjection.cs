@@ -19,7 +19,6 @@ namespace VxTel.Api.IoC.DI
             services.AddTransient<IContratoRepository, ContratoRepository>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<ITarifaRepository, TarifaRepository>();
-            services.AddTransient<ITelefoneClienteRepository, TelefoneClienteRepository>();
 
             // Service
             services.AddTransient<IChamadaService, ChamadaService>();
@@ -28,7 +27,6 @@ namespace VxTel.Api.IoC.DI
             services.AddTransient<IContratoService, ContratoService>();
             services.AddTransient<IProdutoService, ProdutoService>();
             services.AddTransient<ITarifaService, TarifaService>();
-            services.AddTransient<ITelefoneClienteService, TelefoneClienteService>();
 
             // UseCases
             services.AddTransient<IClienteUseCase, ClienteUseCase>();

@@ -44,7 +44,7 @@ namespace VxTel.Api.Domain.DTO
             return obj is ProdutoDTO produto &&
                    Id == produto.Id &&
                    Nome == produto.Nome &&
-                   TempoContratado.Equals(produto.TempoContratado) &&
+                   TempoContratado == produto.TempoContratado &&
                    PercentualAcrescimo == produto.PercentualAcrescimo &&
                    Valor == produto.Valor;
         }

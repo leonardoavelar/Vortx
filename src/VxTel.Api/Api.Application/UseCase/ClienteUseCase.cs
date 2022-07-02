@@ -13,9 +13,9 @@ namespace VxTel.Api.Application.UseCase
             _clienteService = clienteService;
         }
 
-        public async Task<ClienteDTO> RetornaClienteContratoTelefone(int id)
+        public async Task<ClienteDTO> RetornaClienteContrato(int id)
         {
-            var result = await _clienteService.RetornaClienteContratoTelefone(id);
+            var result = await _clienteService.RetornaClienteContrato(id);
             return result;
         }
     }

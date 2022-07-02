@@ -17,16 +17,16 @@ namespace VxTel.Api.Test.Application.Service
         public ClienteServiceTest(IMapper mapper)
             : base (new ClienteService(mapper, new ClienteRepository(DatabaseContextExtension.GetDatabaseContextTestAsync())))
         {
-            cliente = new ClienteDTO("Leonardo", "123456789");
+            cliente = new ClienteDTO("Leonardo", "123456789", "031", 123456789);
 
-            novoCliente = new ClienteDTO("Fernanda", "987654321");
+            novoCliente = new ClienteDTO("Fernanda", "987654321", "011", 987654321);
 
             listCliente = new List<ClienteDTO>()
             {
-                new ClienteDTO("Leonardo", "123456789"),
-                new ClienteDTO("Daniel", "123456789"),
-                new ClienteDTO("Leandro", "123456789"),
-                new ClienteDTO("Matheus", "123456789")
+                new ClienteDTO("Leonardo", "123456789", "011", 912365489),
+                new ClienteDTO("Daniel", "123456789", "021", 965016511),
+                new ClienteDTO("Leandro", "123456789", "031", 955646011),
+                new ClienteDTO("Matheus", "123456789", "051", 956641360)
             };
         }
 

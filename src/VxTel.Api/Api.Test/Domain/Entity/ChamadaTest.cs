@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using VxTel.Api.Domain.DTO;
 using VxTel.Api.Domain.Entity;
-using VxTel.Api.Domain.Enum;
 
 namespace VxTel.Api.Test.Domain.Entity
 {
@@ -19,7 +18,7 @@ namespace VxTel.Api.Test.Domain.Entity
         public void CreateEntity_ValidateSetParameters_OK()
         {
             var date = DateTime.Now;
-            var dto = new ChamadaDTO(1, 1001, "031", 123456789, "011", 987654321, date, SituacaoChamada.Chamando, date, date, new TimeSpan(1, 30, 0), 123.45);
+            var dto = new ChamadaDTO(1, 1001, "031", 123456789, "011", 987654321, date, date, date, new TimeSpan(1, 30, 0), 123.45);
             var entity = _mapper.Map<Chamada>(dto);
 
             Assert.AreEqual(1, entity.Id);
@@ -29,7 +28,6 @@ namespace VxTel.Api.Test.Domain.Entity
             Assert.AreEqual("011", entity.DddDestino);
             Assert.AreEqual(987654321, entity.TelefoneDestino);
             Assert.AreEqual(date, entity.DataChamada);
-            Assert.AreEqual(SituacaoChamada.Chamando, entity.Situacao);
             Assert.AreEqual(date, entity.DataHoraInicio);
             Assert.AreEqual(date, entity.DataHoraFim);
             Assert.IsNotNull(entity.TempoDuracao);

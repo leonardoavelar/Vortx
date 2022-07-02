@@ -14,7 +14,6 @@ namespace VxTel.Api.Domain.Mapping
             CreateMap<Contrato, ContratoDTO>().ReverseMap();
             CreateMap<Produto, ProdutoDTO>().ReverseMap();
             CreateMap<Tarifa, TarifaDTO>().ReverseMap();
-            CreateMap<TelefoneCliente, TelefoneClienteDTO>().ReverseMap();
         }
     }
 }

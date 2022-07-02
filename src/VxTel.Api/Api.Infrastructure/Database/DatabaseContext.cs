@@ -17,8 +17,6 @@ namespace VxTel.Api.Infrastructure.Database
 
         public virtual DbSet<Tarifa> Tarifa { get; }
 
-        public virtual DbSet<TelefoneCliente> TelefoneCliente { get; }
-
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         {
@@ -32,25 +30,37 @@ namespace VxTel.Api.Infrastructure.Database
             {
                 entity.ToTable("Chamada");
 
+                entity.HasKey(e => e.Id);
+
                 entity.HasIndex(e => e.ClienteId, "ClienteId");
-
-                entity.Property(e => e.DataChamada).HasColumnType("datetime");
-
-                entity.Property(e => e.DataHoraFim).HasColumnType("datetime");
-
-                entity.Property(e => e.DataHoraInicio).HasColumnType("datetime");
-
-                entity.Property(e => e.DddDestino)
-                    .IsRequired()
-                    .HasMaxLength(3)
-                    .IsFixedLength();
 
                 entity.Property(e => e.DddOrigem)
                     .IsRequired()
                     .HasMaxLength(3)
                     .IsFixedLength();
 
+                entity.Property(e => e.TelefoneOrigem)
+                    .IsRequired()
+                    .HasMaxLength(9);
+
+                entity.Property(e => e.DddDestino)
+                    .IsRequired()
+                    .HasMaxLength(3)
+                    .IsFixedLength();
+
+                entity.Property(e => e.TelefoneDestino)
+                    .IsRequired()
+                    .HasMaxLength(9);
+
+                entity.Property(e => e.DataChamada).HasColumnType("datetime");
+
+                entity.Property(e => e.DataHoraInicio).HasColumnType("datetime");
+
+                entity.Property(e => e.DataHoraFim).HasColumnType("datetime");
+
                 entity.Property(e => e.TempoDuracao).HasColumnType("time");
+
+                entity.Property(e => e.Valor).HasColumnType("double");
 
                 entity.HasOne(d => d.Cliente)
                     .WithMany(p => p.Chamadas)
@@ -61,22 +71,38 @@ namespace VxTel.Api.Infrastructure.Database
             {
                 entity.ToTable("Cliente");
 
-                entity.Property(e => e.Documento)
-                    .IsRequired()
-                    .HasMaxLength(14);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nome)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.Property(e => e.Documento)
+                    .IsRequired()
+                    .HasMaxLength(14);
+
+                entity.Property(e => e.Ddd)
+                    .IsRequired()
+                    .HasMaxLength(3)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Telefone)
+                    .IsRequired()
+                    .HasMaxLength(9)
+                    .IsFixedLength();
             });
 
             modelBuilder.Entity<Consumo>(entity =>
             {
                 entity.ToTable("Consumo");
 
+                entity.HasKey(e => e.Id);
+
                 entity.HasIndex(e => e.ClienteId, "ClienteId");
 
                 entity.Property(e => e.TempoTotal).HasColumnType("time");
+
+                entity.Property(e => e.Valor).HasColumnType("double");
 
                 entity.HasOne(d => d.Cliente)
                     .WithMany(p => p.Consumos)
@@ -86,6 +112,8 @@ namespace VxTel.Api.Infrastructure.Database
             modelBuilder.Entity<Contrato>(entity =>
             {
                 entity.ToTable("Contrato");
+
+                entity.HasKey(e => e.Id);
 
                 entity.HasIndex(e => e.ClienteId, "ClienteId");
 
@@ -106,16 +134,24 @@ namespace VxTel.Api.Infrastructure.Database
             {
                 entity.ToTable("Produto");
 
+                entity.HasKey(e => e.Id);
+
                 entity.Property(e => e.Nome)
                     .IsRequired()
                     .HasMaxLength(50);
 
                 entity.Property(e => e.TempoContratado).HasColumnType("time");
+
+                entity.Property(e => e.PercentualAcrescimo).HasColumnType("double");
+
+                entity.Property(e => e.Valor).HasColumnType("double");
             });
 
             modelBuilder.Entity<Tarifa>(entity =>
             {
                 entity.ToTable("Tarifa");
+
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.DddDestino)
                     .IsRequired()
@@ -126,22 +162,8 @@ namespace VxTel.Api.Infrastructure.Database
                     .IsRequired()
                     .HasMaxLength(3)
                     .IsFixedLength();
-            });
 
-            modelBuilder.Entity<TelefoneCliente>(entity =>
-            {
-                entity.ToTable("TelefoneCliente");
-
-                entity.HasIndex(e => e.ClienteId, "ClienteId");
-
-                entity.Property(e => e.Ddd)
-                    .IsRequired()
-                    .HasMaxLength(3)
-                    .IsFixedLength();
-
-                entity.HasOne(d => d.Cliente)
-                    .WithMany(p => p.TelefonesCliente)
-                    .HasForeignKey(d => d.ClienteId);
+                entity.Property(e => e.Valor).HasColumnType("double");
             });
         }
     }

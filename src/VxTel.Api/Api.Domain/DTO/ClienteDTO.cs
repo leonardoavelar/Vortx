@@ -10,6 +10,10 @@ namespace VxTel.Api.Domain.DTO
 
         public string Documento { get; set; }
 
+        public string Ddd { get; set; }
+
+        public long Telefone { get; set; }
+
         [JsonIgnore]
         public ICollection<ChamadaDTO> Chamadas { get; set; }
 
@@ -18,25 +22,25 @@ namespace VxTel.Api.Domain.DTO
 
         public ICollection<ContratoDTO> Contratos { get; set; }
 
-        public ICollection<TelefoneClienteDTO> TelefonesCliente { get; set; }
-
         public ClienteDTO() { }
 
-        public ClienteDTO(int id, string nome, string documento)
+        public ClienteDTO(int id, string nome, string documento, string ddd, long telefone)
             : base(id)
         {
-            SetValue(nome, documento);
+            SetValue(nome, documento, ddd, telefone);
         }
 
-        public ClienteDTO(string nome, string documento)
+        public ClienteDTO(string nome, string documento, string ddd, long telefone)
         {
-            SetValue(nome, documento);
+            SetValue(nome, documento, ddd, telefone);
         }
 
-        private void SetValue(string nome, string documento)
+        private void SetValue(string nome, string documento, string ddd, long telefone)
         {
             Nome = nome;
             Documento = documento;
+            Ddd = ddd;
+            Telefone = telefone;
         }
 
         public override bool Equals(object obj)
@@ -47,7 +51,9 @@ namespace VxTel.Api.Domain.DTO
             return obj is ClienteDTO cliente &&
                    Id == cliente.Id &&
                    Nome == cliente.Nome &&
-                   Documento == cliente.Documento;
+                   Documento == cliente.Documento &&
+                   Ddd == cliente.Ddd &&
+                   Telefone == cliente.Telefone;
         }
 
         public override int GetHashCode()

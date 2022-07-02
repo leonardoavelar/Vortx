@@ -1,5 +1,4 @@
 ﻿using VxTel.Api.Domain.DTO;
-using VxTel.Api.Domain.Enum;
 
 namespace VxTel.Api.Test.Domain.DTO
 {
@@ -11,7 +10,7 @@ namespace VxTel.Api.Test.Domain.DTO
         {
             var date = DateTime.Now;
 
-            var chamada = new ChamadaDTO(1, 1001, "031", 123456789, "011", 987654321, date, SituacaoChamada.Chamando, date, date, new TimeSpan(1, 30, 0), 123.45);
+            var chamada = new ChamadaDTO(1, 1001, "031", 123456789, "011", 987654321, date, date, date, new TimeSpan(1, 30, 0), 123.45);
 
             Assert.AreEqual(1, chamada.Id);
             Assert.AreEqual(1001, chamada.ClienteId);
@@ -20,7 +19,6 @@ namespace VxTel.Api.Test.Domain.DTO
             Assert.AreEqual("011", chamada.DddDestino);
             Assert.AreEqual(987654321, chamada.TelefoneDestino);
             Assert.AreEqual(date, chamada.DataChamada);
-            Assert.AreEqual(SituacaoChamada.Chamando, chamada.Situacao);
             Assert.AreEqual(date, chamada.DataHoraInicio);
             Assert.AreEqual(date, chamada.DataHoraFim);
             Assert.IsNotNull(chamada.TempoDuracao);

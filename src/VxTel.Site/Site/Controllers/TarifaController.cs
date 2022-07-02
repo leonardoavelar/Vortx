@@ -68,7 +68,12 @@ namespace SalesWebMvc.Controllers
             if (id != tarifa.Id)
                 return NotFound();
 
-            await _tarifaRefit.Put(id, tarifa);
+            if (ModelState.IsValid)
+            {
+                await _tarifaRefit.Put(id, tarifa);                
+
+                return RedirectToAction(nameof(Index));
+            }
             return View(tarifa);
         }
 

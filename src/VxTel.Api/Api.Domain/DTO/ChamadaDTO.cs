@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using VxTel.Api.Domain.Enum;
 
 namespace VxTel.Api.Domain.DTO
 {
@@ -20,9 +19,7 @@ namespace VxTel.Api.Domain.DTO
 
         public DateTime DataChamada { get; set; }
 
-        public SituacaoChamada Situacao { get; set; }
-
-        public DateTime? DataHoraInicio { get; set; }
+        public DateTime DataHoraInicio { get; set; }
 
         public DateTime? DataHoraFim { get; set; }
 
@@ -32,24 +29,24 @@ namespace VxTel.Api.Domain.DTO
 
         public ChamadaDTO() { }
 
-        public ChamadaDTO(int id, int clienteId, string dddOrigem, long telefoneOrigem, 
-                          string dddDestino, long telefoneDestino, DateTime dataChamada, SituacaoChamada situacao, 
-                          DateTime? dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
+        public ChamadaDTO(int id, int clienteId, string dddOrigem, long telefoneOrigem,
+                          string dddDestino, long telefoneDestino, DateTime dataChamada,
+                          DateTime dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
             : base(id)
         {
-            SetValue(clienteId, dddOrigem, telefoneOrigem, dddDestino, telefoneDestino, dataChamada, situacao, dataHoraInicio, dataHoraFim, tempoDuracao, valor);
+            SetValue(clienteId, dddOrigem, telefoneOrigem, dddDestino, telefoneDestino, dataChamada, dataHoraInicio, dataHoraFim, tempoDuracao, valor);
         }
 
         public ChamadaDTO(int clienteId, string dddOrigem, long telefoneOrigem,
-                   string dddDestino, long telefoneDestino, DateTime dataChamada, SituacaoChamada situacao,
-                   DateTime? dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
+                   string dddDestino, long telefoneDestino, DateTime dataChamada,
+                   DateTime dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
         {
-            SetValue(clienteId, dddOrigem, telefoneOrigem, dddDestino, telefoneDestino, dataChamada, situacao, dataHoraInicio, dataHoraFim, tempoDuracao, valor);
+            SetValue(clienteId, dddOrigem, telefoneOrigem, dddDestino, telefoneDestino, dataChamada, dataHoraInicio, dataHoraFim, tempoDuracao, valor);
         }
 
-        private void SetValue(int clienteId, string dddOrigem, long telefoneOrigem, 
-                              string dddDestino, long telefoneDestino, DateTime dataChamada, SituacaoChamada situacao, 
-                              DateTime? dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
+        private void SetValue(int clienteId, string dddOrigem, long telefoneOrigem,
+                              string dddDestino, long telefoneDestino, DateTime dataChamada,
+                              DateTime dataHoraInicio, DateTime? dataHoraFim, TimeSpan? tempoDuracao, double? valor)
         {
             ClienteId = clienteId;
             DddOrigem = dddOrigem;
@@ -57,7 +54,6 @@ namespace VxTel.Api.Domain.DTO
             DddDestino = dddDestino;
             TelefoneDestino = telefoneDestino;
             DataChamada = dataChamada;
-            Situacao = situacao;
             DataHoraInicio = dataHoraInicio;
             DataHoraFim = dataHoraFim;
             TempoDuracao = tempoDuracao;
@@ -77,10 +73,9 @@ namespace VxTel.Api.Domain.DTO
                    DddDestino == chamada.DddDestino &&
                    TelefoneDestino == chamada.TelefoneDestino &&
                    DataChamada == chamada.DataChamada &&
-                   Situacao == chamada.Situacao &&
                    DataHoraInicio == chamada.DataHoraInicio &&
                    DataHoraFim == chamada.DataHoraFim &&
-                   EqualityComparer<TimeSpan?>.Default.Equals(TempoDuracao, chamada.TempoDuracao) &&
+                   TempoDuracao == chamada.TempoDuracao &&
                    Valor == chamada.Valor;
         }
 
@@ -94,7 +89,6 @@ namespace VxTel.Api.Domain.DTO
             hash.Add(DddDestino);
             hash.Add(TelefoneDestino);
             hash.Add(DataChamada);
-            hash.Add(Situacao);
             hash.Add(DataHoraInicio);
             hash.Add(DataHoraFim);
             hash.Add(TempoDuracao);

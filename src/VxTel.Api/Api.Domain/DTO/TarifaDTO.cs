@@ -17,6 +17,7 @@ namespace VxTel.Api.Domain.DTO
         {
             SetValue(dddOrigem, dddDestino, valor);
         }
+
         public TarifaDTO(string dddOrigem, string dddDestino, double valor)
         {
             SetValue(dddOrigem, dddDestino, valor);

@@ -7,40 +7,40 @@ using VxTel.Api.Infrastructure.Database;
 
 namespace VxTel.Api.Infrastructure.Repository
 {
-    public abstract class BaseRepository<E> : IBaseRepository<E>
+    public class BaseRepository<E> : IBaseRepository<E>
         where E : BaseEntity
     {
-        protected readonly DbSet<E> Data;
-        private readonly DatabaseContext DatabaseContext;
+        protected readonly DbSet<E> _data;
+        private readonly DatabaseContext _databaseContext;
 
         public BaseRepository(DatabaseContext databaseContext)
         {
-            DatabaseContext = databaseContext;
-            Data = DatabaseContext.Set<E>();
+            _databaseContext = databaseContext;
+            _data = _databaseContext.Set<E>();
         }
 
         public async Task<E> InsertAsync(E entity)
         {
-            var result = await Data.AddAsync(entity);
-            await DatabaseContext.SaveChangesAsync();
+            var result = await _databaseContext.AddAsync(entity);
+            await _databaseContext.SaveChangesAsync();
             return result.Entity;
         }
 
         public async Task UpdateAsync(E entity)
         {
-            Data.Update(entity);
-            await DatabaseContext.SaveChangesAsync();
+            _databaseContext.Update(entity);
+            await _databaseContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var canal = await Data.FindAsync(id);
-            Data.Remove(canal);
-            await DatabaseContext.SaveChangesAsync();
+            var canal = await _data.FindAsync(id);
+            _databaseContext.Remove(canal);
+            await _databaseContext.SaveChangesAsync();
         }
         public async Task<bool> ExistAsync(int id)
         {
-            var result = await Data.AsNoTracking()
+            var result = await _data.AsNoTracking()
                 .AnyAsync(x => x.Id == id);
 
             return result;
@@ -48,7 +48,7 @@ namespace VxTel.Api.Infrastructure.Repository
 
         public async Task<E> FindByIdAsync(int id)
         {
-            var result = await Data.AsNoTracking()
+            var result = await _data.AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             return result;
@@ -56,7 +56,7 @@ namespace VxTel.Api.Infrastructure.Repository
 
         public async Task<IEnumerable<E>> FindAllAsync()
         {
-            var result = await Data.AsNoTracking()
+            var result = await _data.AsNoTracking()
                 .ToListAsync();
 
             return result;

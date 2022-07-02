@@ -1,5 +1,4 @@
 ﻿using System;
-using VxTel.Api.Domain.Enum;
 
 namespace VxTel.Api.Domain.Entity
 {
@@ -18,8 +17,6 @@ namespace VxTel.Api.Domain.Entity
         public long TelefoneDestino { get; private set; }
 
         public DateTime DataChamada { get; private set; }
-
-        public SituacaoChamada Situacao { get; private set; }
 
         public DateTime? DataHoraInicio { get; private set; }
 

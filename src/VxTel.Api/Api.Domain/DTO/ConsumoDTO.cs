@@ -40,7 +40,7 @@ namespace VxTel.Api.Domain.DTO
             return obj is ConsumoDTO consumo &&
                    Id == consumo.Id &&
                    ClienteId == consumo.ClienteId &&
-                   TempoTotal.Equals(consumo.TempoTotal) &&
+                   TempoTotal == consumo.TempoTotal &&
                    Valor == consumo.Valor;
         }
 

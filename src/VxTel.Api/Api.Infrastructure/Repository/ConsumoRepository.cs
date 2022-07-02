@@ -17,7 +17,7 @@ namespace VxTel.Api.Infrastructure.Repository
 
         public async Task<IEnumerable<Consumo>> FindByClienIdAsync(int idClient)
         {
-            var result = await Data.AsNoTracking()
+            var result = await _data.AsNoTracking()
                 .Where(x => x.ClienteId == idClient)
                 .ToListAsync();
 

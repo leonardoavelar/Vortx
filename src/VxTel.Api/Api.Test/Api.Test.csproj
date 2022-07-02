@@ -10,21 +10,25 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Application\UseCase\**" />
+	  <EmbeddedResource Remove="Application\UseCase\**" />
+	  <None Remove="Application\UseCase\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Remove="Application\Service\TarifaServiceTest1.cs" />
 		<Compile Remove="Integration\MockDbSetExtesion.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="11.0.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.6" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
 		<PackageReference Include="Moq" Version="4.18.1" />
 		<PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
 		<PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
 		<PackageReference Include="coverlet.collector" Version="3.1.2" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Application\UseCase\" />
 	</ItemGroup>
 
 	<ItemGroup>
