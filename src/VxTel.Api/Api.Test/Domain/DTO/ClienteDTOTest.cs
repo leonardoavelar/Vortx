@@ -2,19 +2,21 @@
 
 namespace VxTel.Api.Test.Domain.DTO
 {
-    [TestClass]
     public class ClienteDTOTest
     {
-        [TestMethod]
+        [Test]
         public void CreateDTO_ValidateSetParameters_OK()
         {
             var cliente = new ClienteDTO(1, "Nome", "12345678901", "011", 987654321);
-
-            Assert.AreEqual(1, cliente.Id);
-            Assert.AreEqual("Nome", cliente.Nome);
-            Assert.AreEqual("12345678901", cliente.Documento);
-            Assert.AreEqual("011", cliente.Ddd);
-            Assert.AreEqual(987654321, cliente.Telefone);
+           
+            Assert.Multiple(() =>
+            {
+                Assert.That(cliente.Id, Is.EqualTo(1));
+                Assert.That(cliente.Nome, Is.EqualTo("Nome"));
+                Assert.That(cliente.Documento, Is.EqualTo("12345678901"));
+                Assert.That(cliente.Ddd, Is.EqualTo("011"));
+                Assert.That(cliente.Telefone, Is.EqualTo(987654321));
+            });
         }
     }
 }

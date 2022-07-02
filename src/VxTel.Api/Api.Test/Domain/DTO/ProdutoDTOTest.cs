@@ -2,21 +2,23 @@
 
 namespace VxTel.Api.Test.Domain.DTO
 {
-    [TestClass]
     public class ProdutoDTOTest
     {
-        [TestMethod]
+        [Test]
         public void CreateDTO_ValidateSetParameters_OK()
         {
             var produto = new ProdutoDTO(1, "Teste", new TimeSpan(1, 30, 0), 10, 100);
 
-            Assert.AreEqual(1, produto.Id);
-            Assert.AreEqual("Teste", produto.Nome);
-            Assert.AreEqual(1, produto.TempoContratado.Hours);
-            Assert.AreEqual(30, produto.TempoContratado.Minutes);
-            Assert.AreEqual(0, produto.TempoContratado.Seconds);
-            Assert.AreEqual(10, produto.PercentualAcrescimo);
-            Assert.AreEqual(100, produto.Valor);
+            Assert.Multiple(() =>
+            {
+                Assert.That(produto.Id, Is.EqualTo(1));
+                Assert.That(produto.Nome, Is.EqualTo("Teste"));
+                Assert.That(produto.TempoContratado.Hours, Is.EqualTo(1));
+                Assert.That(produto.TempoContratado.Minutes, Is.EqualTo(30));
+                Assert.That(produto.TempoContratado.Seconds, Is.EqualTo(0));
+                Assert.That(produto.PercentualAcrescimo, Is.EqualTo(10));
+                Assert.That(produto.Valor, Is.EqualTo(100));
+            });
         }
     }
 }
