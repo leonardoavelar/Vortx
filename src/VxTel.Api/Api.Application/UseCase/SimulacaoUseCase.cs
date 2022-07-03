@@ -15,65 +15,63 @@ namespace VxTel.Api.Application.UseCase
             _produtoService = produtoService;
         }
 
-        public async Task<IEnumerable<SimulacaoDTO>> GetSimulacaoAsync(SimulacaoRequestDTO simulacaoRequest)
+        public async Task<SimulacaoResponseDTO> SimulacaoAsync(SimulacaoRequestDTO simulacaoRequest)
         {
-            var result = new List<SimulacaoDTO>();
+            var result = new SimulacaoResponseDTO
+            {
+                SimulacaoRequest = simulacaoRequest
+            };
 
-            if (simulacaoRequest is null)
+            if (simulacaoRequest is null || simulacaoRequest.TempoSimulado.TotalMinutes == 0)
                 return result;
 
             var tarifa = await _tarifaService.FindByIdAsync(simulacaoRequest.TarifaId);
 
-            if (tarifa == null)
+            if (tarifa is null)
                 return result;
 
             var produtos = await _produtoService.FindAllAsync();
 
-            produtos.ToList()
-                .ForEach(async (produto) => result.Add(await SimularValores(simulacaoRequest, tarifa, produto)));
-
+            if (produtos is not null)
+                result.Simulacao = produtos.Select(x => SimularValores(simulacaoRequest, tarifa, x));
+            
             return result;
         }
 
-        private async Task<SimulacaoDTO> SimularValores(SimulacaoRequestDTO simulacaoRequest, TarifaDTO tarifa, ProdutoDTO produto)
+        private SimulacaoDTO SimularValores(SimulacaoRequestDTO simulacaoRequest, TarifaDTO tarifa, ProdutoDTO produto)
         {
             var result = new SimulacaoDTO()
             {
                 DddOrigem = tarifa.DddOrigem,
                 DddDestino = tarifa.DddDestino,
-                ProdutoDTO = produto,
+                Produto = produto,
                 Tempo = simulacaoRequest.TempoSimulado,
-                ValorComProduto = await CalcularCustoComProduto(simulacaoRequest.TempoSimulado, tarifa.Valor, produto),
-                ValorSemProduto = await CalcularCustoSemProduto(simulacaoRequest.TempoSimulado, tarifa.Valor)
+                ValorComProduto = CalcularCustoComProduto(simulacaoRequest.TempoSimulado, tarifa.Valor, produto),
+                ValorSemProduto = CalcularCustoSemProduto(simulacaoRequest.TempoSimulado, tarifa.Valor)
             };
 
             return result;
         }
 
-        private Task<double> CalcularCustoComProduto(TimeSpan tempoSimulado, double valorTarifa, ProdutoDTO produto)
+        private double CalcularCustoComProduto(TimeSpan tempoSimulado, double valorTarifa, ProdutoDTO produto)
         {
             double total = 0;
             var possuiAcrescimo = (tempoSimulado > produto.TempoContratado);
-            var tempoSemAcrescimo = produto.TempoContratado;
-            var tempoComAcrescimo = tempoSimulado - produto.TempoContratado;
 
             if (possuiAcrescimo)
             {
-                total += (valorTarifa * tempoSemAcrescimo.TotalMinutes);
-                total += ((valorTarifa * produto.PercentualAcrescimo) * tempoComAcrescimo.TotalMinutes);
-            }
-            else
-            {
-                total += (valorTarifa * tempoSimulado.TotalMinutes);
+                var tempoComAcrescimo = tempoSimulado - produto.TempoContratado;
+                var ValorTarifaAcrescimo = valorTarifa * (produto.PercentualAcrescimo / 100);
+                total += ((valorTarifa + ValorTarifaAcrescimo) * tempoComAcrescimo.TotalMinutes);
             }
 
-            return Task.FromResult(total);
+            return total;
         }
 
-        private Task<double> CalcularCustoSemProduto(TimeSpan tempoSimulado, double valorTarifa)
+        private double CalcularCustoSemProduto(TimeSpan tempoSimulado, double valorTarifa)
         {
             double total = (valorTarifa * tempoSimulado.TotalMinutes);
-            return Task.FromResult(total);
+            return total;
         }
     }
 }

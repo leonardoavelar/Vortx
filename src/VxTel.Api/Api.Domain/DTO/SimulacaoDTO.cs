@@ -14,7 +14,7 @@ namespace VxTel.Api.Domain.DTO
         [Display(Name = "Tempo")]
         public TimeSpan Tempo { get; set; }
 
-        public ProdutoDTO ProdutoDTO { get; set; }
+        public ProdutoDTO Produto { get; set; }
 
         [Display(Name = "Valor Com FaleMais")]
         public double ValorComProduto { get; set; }
@@ -22,5 +22,7 @@ namespace VxTel.Api.Domain.DTO
         [Display(Name = "Valor Sem FaleMais")]
 
         public double ValorSemProduto { get; set; }
+
+        public SimulacaoDTO() { }
     }
 }

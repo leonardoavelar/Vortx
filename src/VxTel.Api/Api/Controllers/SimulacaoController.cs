@@ -17,9 +17,9 @@ namespace VxTel.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IEnumerable<SimulacaoDTO>> GetAsync([FromBody] SimulacaoRequestDTO simulacaoRequest)
+        public async Task<SimulacaoResponseDTO> PostAsync([FromBody] SimulacaoRequestDTO simulacaoRequest)
         {
-            var result = await _simulacaoUseCase.GetSimulacaoAsync(simulacaoRequest);
+            var result = await _simulacaoUseCase.SimulacaoAsync(simulacaoRequest);
             return result;
         }
     }

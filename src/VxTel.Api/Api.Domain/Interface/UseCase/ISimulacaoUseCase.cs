@@ -6,6 +6,6 @@ namespace VxTel.Api.Domain.Interface.UseCase
 {
     public interface ISimulacaoUseCase
     {
-        Task<IEnumerable<SimulacaoDTO>> GetSimulacaoAsync(SimulacaoRequestDTO simulacaoRequest);
+        Task<SimulacaoResponseDTO> SimulacaoAsync(SimulacaoRequestDTO simulacaoRequest);
     }
 }
