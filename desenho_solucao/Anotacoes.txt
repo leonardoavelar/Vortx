@@ -6,11 +6,6 @@ Escopo (MVP)
 
 * Controlar cadastro de tarifas
 * Controlar cadastro de produtos
-* Controlar cadastro de clientes
-* Controlar contratação de produtos pelo cliente
-* Controlar chamadas realizadas pelo cliente
-* Controlar consumo do cliente
-* Controlar conta de cliente
 * Realizar simulação do valor de chamada
 * Implementar Healtcheck
 * Implementar Swagger para documentação
@@ -21,34 +16,11 @@ Fora do Escopo
 ---------------------
 
 * Controlar acesso a API
-* Controlar acesso ao site
-* Controlar período de consumo do cliente
-* Controlar emissão de fatura
+* Controlar acesso ao Site
+* Controlar cadastro de clientes
+* Controlar contratação de produtos pelo cliente
+* Controlar chamadas realizadas pelo cliente
+* Controlar consumo do cliente
+* Controlar conta de cliente
 * Validar dados que estão sendo manipulados
 * Implementar Middleware de Exception
-
-
----------------------
-Observações
----------------------
-
-Gerenciar chamadas de Longa Distacia
-Cadastrar Produto FaleMais 30, 60 e 120
-A chamada possui uma tarifa fixa por minuto
-Contabilizar a ligação a partir do atendimento
-Apos o termino da chamada sensibilizar fila para calcular Conta e Historico Consumo do Cliente
-
----------------------
-Endpoints
----------------------
-
-vxtel\v1\Tarifa
-vxtel\v1\Cliente
-vxtel\v1\Cliente\Telefone
-vxtel\v1\Produto
-vxtel\v1\Contrato
-vxtel\v1\Chamada
-vxtel\v1\Chamada\Iniciada
-vxtel\v1\Chamada\Encerrada
-vxtel\v1\Conta
-vxtel\v1\Conta\Consumo

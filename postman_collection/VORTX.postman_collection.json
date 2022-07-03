@@ -1,0 +1,233 @@
+{
+	"variables": [],
+	"info": {
+		"name": "VORTX",
+		"_postman_id": "6e63c107-aaff-3a79-a408-e4dc74c27658",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HealthCheck",
+			"description": "",
+			"item": [
+				{
+					"name": "HealthCheck",
+					"request": {
+						"url": "{{URL_API}}/health",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tarifa",
+			"description": "",
+			"item": [
+				{
+					"name": "GET /Tarifa",
+					"request": {
+						"url": "{{URL_API}}/Tarifa",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET /Tarifa/Id",
+					"request": {
+						"url": "{{URL_API}}/Tarifa/1",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST /Tarifa",
+					"request": {
+						"url": "{{URL_API}}/Tarifa",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"DddOrigem\": \"031\",\n\t\"DddDestino\": \"012\",\n\t\"Valor\": 2.5\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /Tarifa/Id",
+					"request": {
+						"url": "{{URL_API}}/Tarifa/5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Id\": 1,\n\t\"DddOrigem\": \"011\",\n\t\"DddDestino\": \"013\",\n\t\"Valor\": 3.5\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /Tarifa/Id",
+					"request": {
+						"url": "{{URL_API}}/Tarifa/2",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"description": "",
+			"item": [
+				{
+					"name": "GET /Produto",
+					"request": {
+						"url": "{{URL_API}}/Produto",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET /Produto/Id",
+					"request": {
+						"url": "{{URL_API}}/Produto/1",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST /Produto",
+					"request": {
+						"url": "{{URL_API}}/Produto",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Nome\": \"FALE MAIS 30\",\n\t\"TempoContratado\": \"00:30:00\",\n\t\"PercentualAcrescimo\": 9.5\n,\n\t\"Valor\": 30.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /Produto/Id",
+					"request": {
+						"url": "{{URL_API}}/Produto/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Nome\": \"FALE MAIS 30\",\n\t\"TempoContratado\": \"00:30:00\",\n\t\"PercentualAcrescimo\": 9.5\n,\n\t\"Valor\": 30.0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /Produto/Id",
+					"request": {
+						"url": "{{URL_API}}/Produto/2",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Simulacao",
+			"description": "",
+			"item": [
+				{
+					"name": "GET /Simulacao",
+					"request": {
+						"url": "{{URL_API}}/Simulacao",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"DddOrigem\" : \"011\",\r\n\t\"DddDestino\" : \"017\",\r\n\t\"TempoSimulado\": \"01:20:00\",\r\n\t\"ProdutoId\": 2\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
