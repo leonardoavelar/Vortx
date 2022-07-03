@@ -13,7 +13,7 @@ namespace VxTel.Api.Infrastructure.Repository
         {
         }
 
-        public async Task<Cliente> RetornaClienteContrato(int id)
+        public async Task<Cliente> RetornaClienteContratoAsync(int id)
         {
             var result = await _data.AsNoTracking()
                 .Include(x => x.Contratos)

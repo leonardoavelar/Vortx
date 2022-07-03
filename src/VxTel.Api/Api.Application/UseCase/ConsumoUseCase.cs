@@ -14,7 +14,7 @@ namespace VxTel.Api.Application.UseCase
             _consumoService = consumoService;
         }
 
-        public async Task<double> CalcularConsumoTotalCliente(int idClient)
+        public async Task<double> CalcularConsumoTotalClienteAsync(int idClient)
         {
             var clientExist = await _clienteService.ExistAsync(idClient);
             if (!clientExist)

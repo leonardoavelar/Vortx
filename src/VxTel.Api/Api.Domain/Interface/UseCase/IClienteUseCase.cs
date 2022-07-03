@@ -5,6 +5,6 @@ namespace VxTel.Api.Domain.Interface.UseCase
 {
     public interface IClienteUseCase
     {
-        Task<ClienteDTO> RetornaClienteContrato(int id);
+        Task<ClienteDTO> RetornaClienteContratoAsync(int id);
     }
 }

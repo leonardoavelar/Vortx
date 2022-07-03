@@ -17,35 +17,35 @@ namespace VxTel.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<D>> Get()
+        public async Task<IEnumerable<D>> GetAsync()
         {
             var result = await _baseService.FindAllAsync();
             return result;
         }
 
         [HttpGet("{id}")]
-        public async Task<D> Get(int id)
+        public async Task<D> GetAsync(int id)
         {
             var result = await _baseService.FindByIdAsync(id);
             return result;
         }
 
         [HttpPost]
-        public async Task<D> Post([FromBody] D dto)
+        public async Task<D> PostAsync([FromBody] D dto)
         {
             var result = await _baseService.InsertAsync(dto);
             return result;
         }
 
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] D dto)
+        public async Task PutAsync(int id, [FromBody] D dto)
         {
             if (dto.Id == id)
                 await _baseService.UpdateAsync(dto);
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             await _baseService.DeleteAsync(id);
         }

@@ -9,18 +9,18 @@ namespace VxTel.Api.Domain.Interface.Implementation
         where D : BaseDTO
     {
         [HttpGet]
-        Task<IEnumerable<D>> Get();
+        Task<IEnumerable<D>> GetAsync();
 
         [HttpGet("{id}")]
-        Task<D> Get(int id);
+        Task<D> GetAsync(int id);
 
         [HttpPost]
-        Task<D> Post([FromBody] D dto);
+        Task<D> PostAsync([FromBody] D dto);
 
         [HttpPut("{id}")]
-        Task Put(int id, [FromBody] D dto);
+        Task PutAsync(int id, [FromBody] D dto);
 
         [HttpDelete("{id}")]
-        Task Delete(int id);
+        Task DeleteAsync(int id);
     }
 }

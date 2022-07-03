@@ -31,6 +31,7 @@ namespace VxTel.Api.IoC.DI
             // UseCases
             services.AddTransient<IClienteUseCase, ClienteUseCase>();
             services.AddTransient<IConsumoUseCase, ConsumoUseCase>();
+            services.AddTransient<ISimulacaoUseCase, SimulacaoUseCase>();
 
             // AutoMapper
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));

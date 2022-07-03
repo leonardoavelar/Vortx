@@ -16,9 +16,9 @@ namespace VxTel.Api.Application.Service
             _clienteRepository = clienteRepository;
         }
 
-        public async Task<ClienteDTO> RetornaClienteContrato(int id)
+        public async Task<ClienteDTO> RetornaClienteContratoAsync(int id)
         {
-            var resultEntity = await _clienteRepository.RetornaClienteContrato(id);
+            var resultEntity = await _clienteRepository.RetornaClienteContratoAsync(id);
             var result = _mapper.Map<ClienteDTO>(resultEntity);
             return result;
         }

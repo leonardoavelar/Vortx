@@ -4,6 +4,6 @@ namespace VxTel.Api.Domain.Interface.UseCase
 {
     public interface IConsumoUseCase
     {
-        Task<double> CalcularConsumoTotalCliente(int idClient);
+        Task<double> CalcularConsumoTotalClienteAsync(int idClient);
     }
 }

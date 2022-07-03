@@ -19,9 +19,9 @@ namespace VxTel.Api.Controllers
         }
 
         [HttpGet("Cliente/{idClient}")]
-        public async Task<double> GetConsumoCliente(int idClient)
+        public async Task<double> GetConsumoClienteAsync(int idClient)
         {
-            var result = await _consumoUseCase.CalcularConsumoTotalCliente(idClient);
+            var result = await _consumoUseCase.CalcularConsumoTotalClienteAsync(idClient);
             return result;
         }
     }

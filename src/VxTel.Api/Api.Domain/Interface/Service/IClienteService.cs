@@ -7,6 +7,6 @@ namespace VxTel.Api.Domain.Interface.Service
 {
     public interface IClienteService : IBaseService<ClienteDTO, Cliente>
     {
-        Task<ClienteDTO> RetornaClienteContrato(int id);
+        Task<ClienteDTO> RetornaClienteContratoAsync(int id);
     }
 }
