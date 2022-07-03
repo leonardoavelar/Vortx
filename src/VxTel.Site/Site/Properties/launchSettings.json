@@ -12,12 +12,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "MYSQL_SERVER": "localhost",
-        "MYSQL_PORT": "3306",
-        "MYSQL_DATABASE": "vxtel",
-        "MYSQL_USER": "leonardo",
-        "MYSQL_PASSWORD": "leonardo"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:5192",
       "dotnetRunMessages": true
@@ -26,12 +21,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "MYSQL_SERVER": "localhost",
-        "MYSQL_PORT": "3306",
-        "MYSQL_DATABASE": "vxtel",
-        "MYSQL_USER": "leonardo",
-        "MYSQL_PASSWORD": "leonardo"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Docker": {

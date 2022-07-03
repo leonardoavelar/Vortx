@@ -1,7 +1,6 @@
 using App.Metrics;
 using App.Metrics.AspNetCore;
 using App.Metrics.Formatters.Prometheus;
-using System.Globalization;
 using System.Reflection;
 using VxTel.Site.IoC.Extension;
 
@@ -71,22 +70,6 @@ app.MapControllerRoute(
 app.ConfigureMetrics();
 app.ConfigureHealthCheck();
 
-var ptBRCulture = new CultureInfo("en-US", true)
-{
-    //NumberFormat = new NumberFormatInfo
-    //{
-    //    CurrencyDecimalSeparator = ".",
-    //    CurrencyGroupSeparator = ",",
-    //    NumberDecimalSeparator = ".",
-    //    NumberGroupSeparator = ",",
-    //    PercentDecimalSeparator = ".",
-    //    PercentGroupSeparator = ","
-    //}
-};
-System.Globalization.CultureInfo.CurrentUICulture = ptBRCulture;
-System.Globalization.CultureInfo.CurrentCulture = ptBRCulture;
-
 app.Run();
-
 
 #endregion

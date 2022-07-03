@@ -13,6 +13,8 @@ namespace VxTel.Site.IoC.Extension
             var refitClientConfiguration = new List<HttpClientPolicyConfiguration>();
             configuration.GetSection("RefitClient").Bind(refitClientConfiguration);
 
+
+
             // Configura os Clients baseado no AppSettings.json
             ConfigureRefitClient<IProdutoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(IProdutoRefit)));
             ConfigureRefitClient<ISimulacaoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(ISimulacaoRefit)));
@@ -24,6 +26,11 @@ namespace VxTel.Site.IoC.Extension
         {
             if (httpClientPolicyConfiguration is not null)
             {
+                var apiUrl = Environment.GetEnvironmentVariable("API_URL");
+
+                if (!string.IsNullOrEmpty(apiUrl))
+                    httpClientPolicyConfiguration.Url = apiUrl;
+
                 services.AddRefitClient<T>().ConfigureHttpClient(client =>
                     {
                         client.BaseAddress = new Uri(httpClientPolicyConfiguration.Url);
