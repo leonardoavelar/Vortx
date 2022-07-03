@@ -11,7 +11,7 @@ namespace VxTel.Site.Domain.DTO
         [Display(Name = "DDD Destino")]
         public string DddDestino { get; set; }
 
-        [DataType(DataType.Duration)]
+        [DataType(DataType.Time)]
         [Display(Name = "Tempo")]
         public TimeSpan Tempo { get; set; }
 

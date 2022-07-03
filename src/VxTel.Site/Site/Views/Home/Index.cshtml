@@ -24,14 +24,11 @@
 						</thead>
 						<tbody>
 							<tr>
-								<input type="hidden" asp-for="TarifaId" name="TarifaId" id="TarifaId" />
 								<td class="col-2">
-									<input type="hidden" asp-for="DddOrigem" name="DddOrigem" id="DddOrigem" />
-									<select name="SelectDddOrigem" id="SelectDddOrigem" class="form-control text-center" asp-items="@ViewBag.ListDddOrigem"></select>
+									<select asp-for="DddOrigem" name="DddOrigem" id="DddOrigem" class="form-control text-center" asp-items="@ViewBag.ListDddOrigem"></select>
 								</td>
 								<td class="col-2">
-									<input type="hidden" asp-for="DddDestino" name="DddDestino" id="DddDestino" />
-									<select name="SelectDddDestino" id="SelectDddDestino" class="form-control text-center" asp-items="@ViewBag.ListDddDestino"></select>
+									<select asp-for="DddDestino" name="DddDestino" id="DddDestino" class="form-control text-center" asp-items="@ViewBag.ListDddDestino"></select>
 
 								</td>
 								<td class="col-2">
@@ -71,8 +68,8 @@
 						<td>@Html.DisplayFor(modelItem => item.DddDestino)</td>
 						<td>@Html.DisplayFor(modelItem => item.Tempo)</td>
 						<td>@Html.DisplayFor(modelItem => item.Produto.Nome)</td>
-						<td>@Html.DisplayFor(modelItem => item.ValorComProduto)</td>
-						<td>@Html.DisplayFor(modelItem => item.ValorSemProduto)</td>
+						<td>R$ @Html.DisplayFor(modelItem => item.ValorComProduto)</td>
+						<td>R$ @Html.DisplayFor(modelItem => item.ValorSemProduto)</td>
 					</tr>
 				}
 			}
@@ -80,50 +77,3 @@
 	</div>
 
 </div>
-
-@section Scripts {
-
-	<script>
-
-		$("#SelectDddOrigem").change(function() {
-			$("#TarifaId").val(0);
-
-			$.ajax({
-				type: "POST",
-				url: "@Url.Action("SelecionaDddDestino")",
-				data: { "dddOrigem": $('#SelectDddOrigem :selected').text() },
-				success: function(response) {
-					var selectDddDestino = $("#SelectDddDestino");
-					selectDddDestino.empty();
-					$.each(response, function() {
-						selectDddDestino.append($("<option></option>").val(this['value']).html(this['text']));
-					});
-
-					var dddOrigem = $('#SelectDddOrigem :selected').text();
-					$("#DddOrigem").val(dddOrigem);
-					//alert(dddOrigem);
-			
-					var dddDestino = $('#SelectDddDestino :selected').text();
-					$("#DddDestino").val(dddDestino);
-					//alert(dddDestino);
-
-					var tarifaId = $('#SelectDddDestino').val();
-					$("#TarifaId").val(tarifaId);
-					//alert(tarifaId);
-				}
-			})
-		});
-
-		$("#SelectDddDestino").change(function() {
-
-			var dddDestino = $('#SelectDddDestino :selected').text();
-			$("#DddDestino").val(dddDestino);
-			//alert(dddDestino);
-
-			var tarifaId = $(this).val();
-			$("#TarifaId").val(tarifaId);
-			//alert(tarifaId);
-		});
-
-	</script>
-}

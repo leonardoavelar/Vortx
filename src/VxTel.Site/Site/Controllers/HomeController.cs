@@ -26,24 +26,11 @@ namespace Site.Controllers
 
             if (tarifas is not null)
             {
-                var tarifaAtual = tarifas.FirstOrDefault(x => x.Id == simulacaoRequest.TarifaId);
+                var listDddOrigem = tarifas.OrderBy(x => x.DddOrigem).Select(x => x.DddOrigem).Distinct().ToList();
+                ViewBag.ListDddOrigem = listDddOrigem.Select(x => new SelectListItem(x, null, x == simulacaoRequest.DddOrigem));
 
-                if (tarifaAtual is null)
-                {
-                    tarifaAtual = tarifas.FirstOrDefault();
-                    simulacaoRequest.TarifaId = tarifaAtual.Id;
-                }
-
-                var listDddOrigem = tarifas.Select(x => x.DddOrigem).Distinct().ToList();
-                ViewBag.ListDddOrigem = listDddOrigem.Select(x => new SelectListItem(x, null, x == tarifaAtual.DddOrigem));
-                ViewBag.ListDddDestino = tarifas.Where(x => x.DddOrigem == tarifaAtual.DddOrigem).Select(x => new SelectListItem(x.DddDestino, x.Id.ToString(), x.DddDestino == tarifaAtual.DddDestino));
-                //}
-                //else
-                //{
-                //    var listDddOrigem = tarifas.Select(x => x.DddOrigem).Distinct().ToList();
-                //    ViewBag.ListDddOrigem = listDddOrigem.Select(x => new SelectListItem(x, null, x == simulacaoRequest.DddOrigem));
-                //    ViewBag.ListDddDestino = tarifas.Where(x => x.DddOrigem == tarifaAtual.DddOrigem).Select(x => new SelectListItem(x.DddDestino, x.Id.ToString(), x.DddDestino == simulacaoRequest.DddDestino));
-                //}
+                var listDddDestino = tarifas.OrderBy(x => x.DddDestino).Select(x => x.DddDestino).Distinct().ToList();
+                ViewBag.ListDddDestino = listDddDestino.Select(x => new SelectListItem(x, null, x == simulacaoRequest.DddDestino));
             }
 
             if (simulacaoRequest.Simular)
@@ -62,28 +49,6 @@ namespace Site.Controllers
         {
             simulacaoRequest.Simular = true;
             return RedirectToAction("Index", simulacaoRequest);
-        }
-
-        //[HttpPost]
-        //public async Task SelecionaDddDestino(string dddOrigem)
-        //{
-        //    var tarifas = await _tarifaRefit.Get();
-
-        //    var result = tarifas.Where(x => x.DddOrigem == dddOrigem)
-        //        .Select(x => new SelectListItem(x.DddDestino, x.Id.ToString()));
-
-        //    ViewBag.ListDddDestino = result;
-        //}
-
-        [HttpPost]
-        public async Task<IActionResult> SelecionaDddDestino(string dddOrigem)
-        {
-            var tarifas = await _tarifaRefit.Get();
-
-            var result = tarifas.Where(x => x.DddOrigem == dddOrigem)
-                .Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.DddDestino }).ToList();
-
-            return Json(result);
         }
 
         public IActionResult Privacy()

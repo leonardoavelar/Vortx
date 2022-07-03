@@ -6,11 +6,11 @@ namespace VxTel.Api.Domain.DTO
     public class SimulacaoRequestDTO
     {
         [Required(ErrorMessage = "{0} required")]
-        [Display(Name = "Id Tarifa")]
-        public int TarifaId { get; set; }
-
+        [Display(Name = "DDD Origem")]
         public string DddOrigem { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "DDD Destino")]
         public string DddDestino { get; set; }
 
         [Required(ErrorMessage = "{0} required")]

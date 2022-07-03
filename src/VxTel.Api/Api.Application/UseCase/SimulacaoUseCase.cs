@@ -22,13 +22,21 @@ namespace VxTel.Api.Application.UseCase
                 SimulacaoRequest = simulacaoRequest
             };
 
-            if (simulacaoRequest is null || simulacaoRequest.TempoSimulado.TotalMinutes == 0)
+            if (simulacaoRequest is null || 
+                simulacaoRequest.TempoSimulado.TotalMinutes == 0 ||
+                string.IsNullOrEmpty(simulacaoRequest.DddOrigem) ||
+                string.IsNullOrEmpty(simulacaoRequest.DddDestino))
                 return result;
 
-            var tarifa = await _tarifaService.FindByIdAsync(simulacaoRequest.TarifaId);
+            var tarifa = await _tarifaService.FindByOrigemDestinoAsync(simulacaoRequest.DddOrigem, simulacaoRequest.DddDestino);
 
             if (tarifa is null)
-                return result;
+                tarifa = new TarifaDTO() 
+                {
+                    DddOrigem = simulacaoRequest.DddOrigem,
+                    DddDestino = simulacaoRequest.DddDestino,
+                    Valor = 0
+                };
 
             var produtos = await _produtoService.FindAllAsync();
 
@@ -38,7 +46,7 @@ namespace VxTel.Api.Application.UseCase
             return result;
         }
 
-        private SimulacaoDTO SimularValores(SimulacaoRequestDTO simulacaoRequest, TarifaDTO tarifa, ProdutoDTO produto)
+        private static SimulacaoDTO SimularValores(SimulacaoRequestDTO simulacaoRequest, TarifaDTO tarifa, ProdutoDTO produto)
         {
             var result = new SimulacaoDTO()
             {
@@ -53,7 +61,7 @@ namespace VxTel.Api.Application.UseCase
             return result;
         }
 
-        private double CalcularCustoComProduto(TimeSpan tempoSimulado, double valorTarifa, ProdutoDTO produto)
+        private static double CalcularCustoComProduto(TimeSpan tempoSimulado, double valorTarifa, ProdutoDTO produto)
         {
             double total = 0;
             var possuiAcrescimo = (tempoSimulado > produto.TempoContratado);
@@ -68,7 +76,7 @@ namespace VxTel.Api.Application.UseCase
             return total;
         }
 
-        private double CalcularCustoSemProduto(TimeSpan tempoSimulado, double valorTarifa)
+        private static double CalcularCustoSemProduto(TimeSpan tempoSimulado, double valorTarifa)
         {
             double total = (valorTarifa * tempoSimulado.TotalMinutes);
             return total;
