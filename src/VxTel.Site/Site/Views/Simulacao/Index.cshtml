@@ -1,0 +1,79 @@
+﻿@using VxTel.Site.Domain.DTO
+@model VxTel.Site.Domain.DTO.SimulacaoRequestDTO
+
+<div class="text-center">
+	<div>
+		<div class="row">
+			<h2>Simulação</h2>
+		</div>
+
+		<form asp-action="Simulacao">
+			<fieldset>
+				<div class="mt-4 row">
+					<table class="table table-hover " cellspacing="0" cellpadding="0">
+						<thead>
+							<tr class="table-success">
+								<th scope="col">Ddd Origem</th>
+								<th scope="col">Ddd Destino</th>
+								<th scope="col">Duração</th>
+								<th scope="col">Produto</th>
+								<th scope="col" class="actions"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="col-2">
+									<select asp-for="DddOrigem" name="DddOrigem" id="DddOrigem" class="form-control text-center" asp-items="@ViewBag.ListDddOrigem"></select>
+								</td>
+								<td class="col-2">
+									<select asp-for="DddDestino" name="DddDestino" id="DddDestino" class="form-control text-center" asp-items="@ViewBag.ListDddDestino"></select>
+								</td>
+								<td class="col-2">
+									<input asp-for="TempoSimulado" name="TempoSimulado" id="TempoSimulado" type="time" class="form-control text-center" />
+								</td>
+								<td class="col-2">
+									<select asp-for="ProdutoId" name="ProdutoId" id="ProdutoId" class="form-control text-center" asp-items="@ViewBag.ListProduto"></select>
+								</td>
+								<td>
+									<div class="btn-group">
+										<input type="submit" id="Simulacao" asp-action="Simulacao" class="btn btn-primary" value="Simular" />
+										<a asp-action="Index" class="btn btn-light">Limpar</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
+	@{
+		var simulacaoResponse = ViewBag.SimulacaoResponse as SimulacaoDTO;
+
+		if (simulacaoResponse is not null)
+		{
+			<div class="mt-4">
+				<table class="table table-hover" cellspacing="0" cellpadding="0">
+					<tr class="table-success">
+						<th scope="col">Origem</th>
+						<th scope="col">Destino</th>
+						<th scope="col">Tempo</th>
+						<th scope="col">Plano FaleMais</th>
+						<th scope="col">Com FaleMais</th>
+						<th scope="col">Sem FaleMais</th>
+					</tr>
+					<tr>
+						<td>@Html.DisplayFor(modelItem => simulacaoResponse.DddOrigem)</td>
+						<td>@Html.DisplayFor(modelItem => simulacaoResponse.DddDestino)</td>
+						<td>@Html.DisplayFor(modelItem => simulacaoResponse.Tempo)</td>
+						<td>@Html.DisplayFor(modelItem => simulacaoResponse.Produto.Nome)</td>
+						<td>R$ @Html.DisplayFor(modelItem => simulacaoResponse.ValorComProduto)</td>
+						<td>R$ @Html.DisplayFor(modelItem => simulacaoResponse.ValorSemProduto)</td>
+					</tr>
+				</table>
+			</div>
+		}
+	}
+
+</div>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace VxTel.Api.Domain.Entity
 {
@@ -12,7 +11,5 @@ namespace VxTel.Api.Domain.Entity
         public double PercentualAcrescimo { get; private set; }
 
         public double Valor { get; private set; }
-
-        public virtual ICollection<Contrato> Contratos { get; private set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Polly;
 using Polly.Extensions.Http;
-using VxTel.Site.IoC.Policy;
 using Refit;
 using VxTel.Site.Domain.Interface.Refit;
+using VxTel.Site.IoC.Policy;
 
 namespace VxTel.Site.IoC.Extension
 {
@@ -14,10 +14,6 @@ namespace VxTel.Site.IoC.Extension
             configuration.GetSection("RefitClient").Bind(refitClientConfiguration);
 
             // Configura os Clients baseado no AppSettings.json
-            ConfigureRefitClient<IChamadaRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(IChamadaRefit)));
-            ConfigureRefitClient<IClienteRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(IClienteRefit)));
-            ConfigureRefitClient<IConsumoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(IConsumoRefit)));
-            ConfigureRefitClient<IContratoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(IContratoRefit)));
             ConfigureRefitClient<IProdutoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(IProdutoRefit)));
             ConfigureRefitClient<ISimulacaoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(ISimulacaoRefit)));
             ConfigureRefitClient<ITarifaRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(ITarifaRefit)));

@@ -13,8 +13,6 @@ namespace VxTel.Api.Domain.DTO
 
         public double Valor { get; set; }
 
-        public ICollection<ContratoDTO> Contratos { get; set; }
-
         public ProdutoDTO() { }
 
         public ProdutoDTO(int id, string nome, TimeSpan tempoContratado, double percentualAcrescimo, double valor)
@@ -51,7 +49,7 @@ namespace VxTel.Api.Domain.DTO
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Nome, TempoContratado, PercentualAcrescimo, Valor, Contratos);
+            return HashCode.Combine(Id, Nome, TempoContratado, PercentualAcrescimo, Valor);
         }
     }
 }

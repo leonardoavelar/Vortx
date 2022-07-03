@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace VxTel.Site.Domain.DTO
@@ -25,8 +24,6 @@ namespace VxTel.Site.Domain.DTO
         [DataType(DataType.Currency)]
         [Display(Name = "Valor Produto")]
         public double Valor { get; set; }
-
-        public ICollection<ContratoDTO> Contratos { get; set; }
 
         public ProdutoDTO() { }
 

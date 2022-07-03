@@ -1,4 +1,4 @@
-namespace Site.Models
+namespace VxTel.Site.Models
 {
     public class ErrorViewModel
     {

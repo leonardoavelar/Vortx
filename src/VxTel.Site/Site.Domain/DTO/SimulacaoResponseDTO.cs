@@ -6,7 +6,7 @@ namespace VxTel.Site.Domain.DTO
     {
         public SimulacaoRequestDTO SimulacaoRequest { get; set; }
 
-        public IEnumerable<SimulacaoDTO> Simulacao { get; set; } = new List<SimulacaoDTO>();
+        public SimulacaoDTO Simulacao { get; set; }
 
         public SimulacaoResponseDTO() { }
     }

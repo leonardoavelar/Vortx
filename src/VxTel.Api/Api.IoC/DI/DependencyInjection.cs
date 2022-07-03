@@ -13,24 +13,14 @@ namespace VxTel.Api.IoC.DI
         public static void ConfigureDependencies(this IServiceCollection services)
         {
             // Repository
-            services.AddTransient<IChamadaRepository, ChamadaRepository>();
-            services.AddTransient<IClienteRepository, ClienteRepository>();
-            services.AddTransient<IConsumoRepository, ConsumoRepository>();
-            services.AddTransient<IContratoRepository, ContratoRepository>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<ITarifaRepository, TarifaRepository>();
 
             // Service
-            services.AddTransient<IChamadaService, ChamadaService>();
-            services.AddTransient<IClienteService, ClienteService>();
-            services.AddTransient<IConsumoService, ConsumoService>();
-            services.AddTransient<IContratoService, ContratoService>();
             services.AddTransient<IProdutoService, ProdutoService>();
             services.AddTransient<ITarifaService, TarifaService>();
 
             // UseCases
-            services.AddTransient<IClienteUseCase, ClienteUseCase>();
-            services.AddTransient<IConsumoUseCase, ConsumoUseCase>();
             services.AddTransient<ISimulacaoUseCase, SimulacaoUseCase>();
 
             // AutoMapper

@@ -38,15 +38,16 @@ namespace VxTel.Api.Application.UseCase
                     Valor = 0
                 };
 
-            var produtos = await _produtoService.FindAllAsync();
+            var produto = await _produtoService.FindByIdAsync(simulacaoRequest.ProdutoId);
 
-            if (produtos is not null)
-                result.Simulacao = produtos.Select(x => SimularValores(simulacaoRequest, tarifa, x));
+            // Realiza simulação
+            if (produto is not null)
+                result.Simulacao = await SimularValores(simulacaoRequest, tarifa, produto);
             
             return result;
         }
 
-        private static SimulacaoDTO SimularValores(SimulacaoRequestDTO simulacaoRequest, TarifaDTO tarifa, ProdutoDTO produto)
+        private static async Task<SimulacaoDTO> SimularValores(SimulacaoRequestDTO simulacaoRequest, TarifaDTO tarifa, ProdutoDTO produto)
         {
             var result = new SimulacaoDTO()
             {
@@ -54,14 +55,14 @@ namespace VxTel.Api.Application.UseCase
                 DddDestino = tarifa.DddDestino,
                 Produto = produto,
                 Tempo = simulacaoRequest.TempoSimulado,
-                ValorComProduto = CalcularCustoComProduto(simulacaoRequest.TempoSimulado, tarifa.Valor, produto),
-                ValorSemProduto = CalcularCustoSemProduto(simulacaoRequest.TempoSimulado, tarifa.Valor)
+                ValorComProduto = await CalcularCustoComProduto(simulacaoRequest.TempoSimulado, tarifa.Valor, produto),
+                ValorSemProduto = await CalcularCustoSemProduto(simulacaoRequest.TempoSimulado, tarifa.Valor)
             };
 
             return result;
         }
 
-        private static double CalcularCustoComProduto(TimeSpan tempoSimulado, double valorTarifa, ProdutoDTO produto)
+        private static Task<double> CalcularCustoComProduto(TimeSpan tempoSimulado, double valorTarifa, ProdutoDTO produto)
         {
             double total = 0;
             var possuiAcrescimo = (tempoSimulado > produto.TempoContratado);
@@ -73,13 +74,13 @@ namespace VxTel.Api.Application.UseCase
                 total += ((valorTarifa + ValorTarifaAcrescimo) * tempoComAcrescimo.TotalMinutes);
             }
 
-            return total;
+            return Task.FromResult(total);
         }
 
-        private static double CalcularCustoSemProduto(TimeSpan tempoSimulado, double valorTarifa)
+        private static Task<double> CalcularCustoSemProduto(TimeSpan tempoSimulado, double valorTarifa)
         {
             double total = (valorTarifa * tempoSimulado.TotalMinutes);
-            return total;
+            return Task.FromResult(total);
         }
     }
 }

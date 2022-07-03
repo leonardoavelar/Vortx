@@ -17,6 +17,10 @@ namespace VxTel.Site.Domain.DTO
         [Display(Name = "Tempo")]
         public TimeSpan TempoSimulado { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Id Produto")]
+        public int ProdutoId { get; set; }
+
         public bool Simular { get; set; } = false;
 
         public SimulacaoRequestDTO() { }

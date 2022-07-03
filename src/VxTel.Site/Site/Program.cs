@@ -1,7 +1,6 @@
 using App.Metrics;
 using App.Metrics.AspNetCore;
 using App.Metrics.Formatters.Prometheus;
-using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using System.Reflection;
 using VxTel.Site.IoC.Extension;
