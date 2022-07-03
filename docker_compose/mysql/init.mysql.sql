@@ -9,21 +9,12 @@ create table IF NOT EXISTS Tarifa (
     Valor double not null
 );
 
-create table IF NOT EXISTS Cliente (
-    Id int not null AUTO_INCREMENT PRIMARY KEY,
-    Nome varchar(100) not null,
-    Documento varchar(14) not null
-);
-
-create table IF NOT EXISTS TelefoneCliente(
-    Id int not null AUTO_INCREMENT PRIMARY KEY,
-    IdCliente int not null,
-    Ddd char(3) not null,
-    Telefone bigint not null,
-    FOREIGN KEY (IdCliente)
-        REFERENCES Cliente(Id)
-        ON DELETE CASCADE
-);
+INSERT INTO Tarifa (DddOrigem, DddDestino, Valor) VALUES ( '011', '016', 1.9);
+INSERT INTO Tarifa (DddOrigem, DddDestino, Valor) VALUES ( '016', '011', 2.9);
+INSERT INTO Tarifa (DddOrigem, DddDestino, Valor) VALUES ( '011', '017', 1.7);
+INSERT INTO Tarifa (DddOrigem, DddDestino, Valor) VALUES ( '017', '011', 2.7);
+INSERT INTO Tarifa (DddOrigem, DddDestino, Valor) VALUES ( '011', '018', 0.9);
+INSERT INTO Tarifa (DddOrigem, DddDestino, Valor) VALUES ( '018', '011', 1.9);
 
 create table IF NOT EXISTS Produto (
     Id int not null AUTO_INCREMENT PRIMARY KEY,
@@ -33,43 +24,6 @@ create table IF NOT EXISTS Produto (
     Valor double not null
 );
 
-create table IF NOT EXISTS Contrato (
-    Id int not null AUTO_INCREMENT PRIMARY KEY,
-    IdCliente int not null,
-    IdProduto int not null,
-    DataContratacao datetime not null,
-    FOREIGN KEY (IdCliente)
-        REFERENCES Cliente(Id)
-        ON DELETE CASCADE,
-    FOREIGN KEY (IdProduto)
-        REFERENCES Produto(Id)
-        ON DELETE CASCADE
-);
-
-create table IF NOT EXISTS Chamada (
-    Id int not null AUTO_INCREMENT PRIMARY KEY,
-    IdCliente int not null,
-    DddOrigem char(3) not null,
-    TelefoneOrigem bigint not null,
-    DddDestino char(3) not null,
-    TelefoneDestino bigint not null,
-    DataChamada datetime not null,
-    Situacao smallint not null,
-    DataHoraInicio datetime null,
-    DataHoraFim datetime null,
-    TempoDuracao time null,
-    Valor double null,
-    FOREIGN KEY (IdCliente)
-        REFERENCES Cliente(Id)
-        ON DELETE CASCADE
-);
-
-create table IF NOT EXISTS Consumo (
-    Id int not null AUTO_INCREMENT PRIMARY KEY,
-    IdCliente int not null,
-    TempoTotal time not null,
-    Valor double not null,
-    FOREIGN KEY (IdCliente)
-        REFERENCES Cliente(Id)
-        ON DELETE CASCADE
-);
+INSERT INTO Produto (Nome, TempoContratado, PercentualAcrescimo, Valor) VALUES ('FaleMais 30', '00:30:00', 10, 20);
+INSERT INTO Produto (Nome, TempoContratado, PercentualAcrescimo, Valor) VALUES ('FaleMais 60', '01:00:00', 10, 40);
+INSERT INTO Produto (Nome, TempoContratado, PercentualAcrescimo, Valor) VALUES ('FaleMais 120', '02:00:00', 10, 80);

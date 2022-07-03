@@ -1,6 +1,13 @@
 version: '3.9'
 volumes:
   dados:
+networks:
+  rede:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.10.0.0/16
+         gateway: 172.10.0.1
 services:
   db:
     image: mysql:latest
@@ -13,11 +20,36 @@ services:
       - ./mysql/init.mysql.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 3306:3306
+    networks:
+      rede:
+        ipv4_address: 172.10.0.2
   api:
     image: leonardoavelar/vxtelapi:latest
+    environment:
+      # ASPNETCORE_ENVIRONMENT: "Development"
+      MYSQL_SERVER: 172.10.0.2
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: vxtel
+      MYSQL_USER: leonardo
+      MYSQL_PASSWORD: leonardo
+      PRINT_CONNECT: mysql
     ports:
       - 8080:80
+    depends_on:
+      - db
+    networks:
+      rede:
+        ipv4_address: 172.10.0.3
   site:
     image: leonardoavelar/vxtelsite:latest
+    # environment:
+      # ASPNETCORE_ENVIRONMENT: "Development"
+      # API_URL: "http://host.docker.internal:8080"
     ports:
       - 8081:80
+    depends_on:
+      - db
+      - api
+    networks:
+      rede:
+        ipv4_address: 172.10.0.4
