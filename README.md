@@ -5,13 +5,20 @@
 
 Este projeto consiste em prover um Simulador do Custo de Chamadas de Longa Distância para os Clientes da VxTel.
 
-Funcionalidades existentes:
+Escopo (MVP)
 * Controlar cadastro de tarifas
 * Controlar cadastro de produtos
+* Realizar simulação do valor de chamada
+
+Fora do Escopo
+* Controlar acesso a API
+* Controlar acesso ao Site
 * Controlar cadastro de clientes
 * Controlar contratação de produtos pelo cliente
 * Controlar chamadas realizadas pelo cliente
-* Realizar simulação do custo de chamada
+* Controlar consumo do cliente
+* Controlar conta de cliente
+* Validar dados que estão sendo manipulados
 
 
 ## Como executar o projeto
