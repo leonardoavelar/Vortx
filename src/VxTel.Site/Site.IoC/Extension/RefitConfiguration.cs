@@ -19,8 +19,8 @@ namespace VxTel.Site.IoC.Extension
             ConfigureRefitClient<IConsumoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(IConsumoRefit)));
             ConfigureRefitClient<IContratoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(IContratoRefit)));
             ConfigureRefitClient<IProdutoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(IProdutoRefit)));
+            ConfigureRefitClient<ISimulacaoRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(ISimulacaoRefit)));
             ConfigureRefitClient<ITarifaRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(ITarifaRefit)));
-            ConfigureRefitClient<ITelefoneClienteRefit>(services, refitClientConfiguration.FirstOrDefault(x => x.Name == nameof(ITelefoneClienteRefit)));
         }
 
         private static void ConfigureRefitClient<T>(this IServiceCollection services, HttpClientPolicyConfiguration? httpClientPolicyConfiguration)
@@ -46,7 +46,7 @@ namespace VxTel.Site.IoC.Extension
             return HttpPolicyExtensions
                 .HandleTransientHttpError()
                 .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
-                .WaitAndRetryAsync(retryCount: 6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+                .WaitAndRetryAsync(retryCount: waitAndRetryPolicyConfiguration.RetryCount, retryAttempt => TimeSpan.FromSeconds(Math.Pow(waitAndRetryPolicyConfiguration.RetryAttempt, retryAttempt)));
         }
 
         private static IAsyncPolicy<HttpResponseMessage>? GetCircuitBreakerPolicy(CircuitBreakerPolicyConfiguration? circuitBreakerPolicyConfiguration)

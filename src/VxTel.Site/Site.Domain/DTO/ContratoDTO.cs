@@ -1,17 +1,26 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace VxTel.Site.Domain.DTO
 {
     public class ContratoDTO : BaseDTO
     {
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Id Cliente")]
         public int ClienteId { get; set; }
 
         public ClienteDTO Cliente { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Id Produto")]
         public int ProdutoId { get; set; }
 
         public ProdutoDTO Produto { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}")]
+        [Display(Name = "Data Contratação")]
         public DateTime DataContratacao { get; set; }
 
         public ContratoDTO() { }

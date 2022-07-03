@@ -1,8 +1,129 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using VxTel.Site.Domain.DTO
+@model VxTel.Site.Domain.DTO.SimulacaoRequestDTO
+@{
+	ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+	<div>
+		<div class="row">
+			<h2>Simulação</h2>
+		</div>
+
+		<form asp-action="Simulacao">
+			<fieldset>
+				<div class="mt-4 row">
+					<table class="table table-hover " cellspacing="0" cellpadding="0">
+						<thead>
+							<tr class="table-success">
+								<th scope="col">Ddd Origem</th>
+								<th scope="col">Ddd Destino</th>
+								<th scope="col">Duração</th>
+								<th scope="col" class="actions"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<input type="hidden" asp-for="TarifaId" name="TarifaId" id="TarifaId" />
+								<td class="col-2">
+									<input type="hidden" asp-for="DddOrigem" name="DddOrigem" id="DddOrigem" />
+									<select name="SelectDddOrigem" id="SelectDddOrigem" class="form-control text-center" asp-items="@ViewBag.ListDddOrigem"></select>
+								</td>
+								<td class="col-2">
+									<input type="hidden" asp-for="DddDestino" name="DddDestino" id="DddDestino" />
+									<select name="SelectDddDestino" id="SelectDddDestino" class="form-control text-center" asp-items="@ViewBag.ListDddDestino"></select>
+
+								</td>
+								<td class="col-2">
+									<input asp-for="TempoSimulado" name="TempoSimulado" id="TempoSimulado" type="time" class="form-control text-center" />
+								</td>
+								<td>
+									<div class="btn-group">
+										<input type="submit" id="Simulacao" asp-action="Simulacao" class="btn btn-primary" value="Simular" />
+										<a asp-action="Index" class="btn btn-light">Limpar</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
+	<div class="mt-4">
+		<table class="table table-hover" cellspacing="0" cellpadding="0">
+			<tr class="table-success">
+				<th scope="col">Origem</th>
+				<th scope="col">Destino</th>
+				<th scope="col">Tempo</th>
+				<th scope="col">Plano FaleMais</th>
+				<th scope="col">Com FaleMais</th>
+				<th scope="col">Sem FaleMais</th>
+			</tr>
+			@{
+				var simulacaoResponse = ViewBag.SimulacaoResponse as IEnumerable<SimulacaoDTO>;
+
+				foreach (var item in simulacaoResponse)
+				{
+					<tr>
+						<td>@Html.DisplayFor(modelItem => item.DddOrigem)</td>
+						<td>@Html.DisplayFor(modelItem => item.DddDestino)</td>
+						<td>@Html.DisplayFor(modelItem => item.Tempo)</td>
+						<td>@Html.DisplayFor(modelItem => item.Produto.Nome)</td>
+						<td>@Html.DisplayFor(modelItem => item.ValorComProduto)</td>
+						<td>@Html.DisplayFor(modelItem => item.ValorSemProduto)</td>
+					</tr>
+				}
+			}
+		</table>
+	</div>
+
 </div>
+
+@section Scripts {
+
+	<script>
+
+		$("#SelectDddOrigem").change(function() {
+			$("#TarifaId").val(0);
+
+			$.ajax({
+				type: "POST",
+				url: "@Url.Action("SelecionaDddDestino")",
+				data: { "dddOrigem": $('#SelectDddOrigem :selected').text() },
+				success: function(response) {
+					var selectDddDestino = $("#SelectDddDestino");
+					selectDddDestino.empty();
+					$.each(response, function() {
+						selectDddDestino.append($("<option></option>").val(this['value']).html(this['text']));
+					});
+
+					var dddOrigem = $('#SelectDddOrigem :selected').text();
+					$("#DddOrigem").val(dddOrigem);
+					//alert(dddOrigem);
+			
+					var dddDestino = $('#SelectDddDestino :selected').text();
+					$("#DddDestino").val(dddDestino);
+					//alert(dddDestino);
+
+					var tarifaId = $('#SelectDddDestino').val();
+					$("#TarifaId").val(tarifaId);
+					//alert(tarifaId);
+				}
+			})
+		});
+
+		$("#SelectDddDestino").change(function() {
+
+			var dddDestino = $('#SelectDddDestino :selected').text();
+			$("#DddDestino").val(dddDestino);
+			//alert(dddDestino);
+
+			var tarifaId = $(this).val();
+			$("#TarifaId").val(tarifaId);
+			//alert(tarifaId);
+		});
+
+	</script>
+}

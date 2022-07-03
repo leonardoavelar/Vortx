@@ -1,13 +1,24 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace VxTel.Site.Domain.DTO
 {
     public class TarifaDTO : BaseDTO
     {
+        [Required(ErrorMessage = "{0} required")]
+        [StringLength(maximumLength: 3, MinimumLength = 3)]
+        [Display(Name = "DDD Origem")]
         public string DddOrigem { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [StringLength(maximumLength: 3, MinimumLength = 3)]
+        [Display(Name = "DDD Destino")]
         public string DddDestino { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Valor Tarifa")]
         public double Valor { get; set; }
 
         public TarifaDTO() { }

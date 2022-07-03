@@ -1,0 +1,52 @@
+﻿@model VxTel.Site.Domain.DTO.ClienteDTO
+
+<div>
+    <div class="row">
+        <h2>Details</h2>
+    </div>
+
+    <div class="row">
+        <div class="table-responsive-sm col-8">
+            <fieldset>
+                <legend>Cliente</legend>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+				<div class="form-group col-2">
+					<label asp-for="Id" class="col-form-label"></label>
+					<input asp-for="Id" type="text" class="form-control text-center" placeholder="" readonly="" />
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Nome" class="col-form-label"></label>
+					<input asp-for="Nome" type="text" class="form-control" placeholder="" readonly="" />
+				</div>
+
+				<div class="form-group col-3">
+                    <label asp-for="Documento" class="col-form-label"></label>
+                    <input asp-for="Documento" type="text" class="form-control text-center" readonly="" />
+                </div>
+					
+				<div class="form-group col-2">
+                    <label asp-for="Ddd" class="col-form-label"></label>
+                    <input asp-for="Ddd" type="text" class="form-control text-center" placeholder="000" readonly="" />
+                </div>
+                
+				<div class="form-group col-2">
+                    <label asp-for="Telefone" class="col-form-label"></label>
+                    <input asp-for="Telefone" type="text" class="form-control text-center" placeholder="00000000" readonly="" />
+                </div>
+
+                <div class="form-group mt-4">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="Index" class="btn btn-light">Back to List</a>
+                </div>
+
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

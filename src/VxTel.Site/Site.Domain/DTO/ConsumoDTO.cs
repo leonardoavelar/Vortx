@@ -1,15 +1,26 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace VxTel.Site.Domain.DTO
 {
     public class ConsumoDTO : BaseDTO
     {
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Id Cliente")]
         public int ClienteId { get; set; }
 
         public ClienteDTO Cliente { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = "{HH:mm:ss}")]
+        [Display(Name = "Tempo Consumido")]
         public TimeSpan TempoTotal { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Valor")]
         public double Valor { get; set; }
 
         public ConsumoDTO() { }

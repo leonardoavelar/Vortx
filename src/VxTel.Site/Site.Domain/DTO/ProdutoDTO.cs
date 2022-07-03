@@ -1,16 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace VxTel.Site.Domain.DTO
 {
     public class ProdutoDTO : BaseDTO
     {
+        [Required(ErrorMessage = "{0} required")]
+        [StringLength(50)]
+        [Display(Name = "Nome Produto")]
         public string Nome { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [DataType(DataType.Duration)]
+        [Display(Name = "Tempo Contratado")]
         public TimeSpan TempoContratado { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
+        [Display(Name = "Percentual de Acréscimo")]
         public double PercentualAcrescimo { get; set; }
 
+        [Required(ErrorMessage = "{0} required")]
+        [DataType(DataType.Currency)]
+        [Display(Name = "Valor Produto")]
         public double Valor { get; set; }
 
         public ICollection<ContratoDTO> Contratos { get; set; }
@@ -44,14 +57,14 @@ namespace VxTel.Site.Domain.DTO
             return obj is ProdutoDTO produto &&
                    Id == produto.Id &&
                    Nome == produto.Nome &&
-                   TempoContratado.Equals(produto.TempoContratado) &&
+                   TempoContratado == produto.TempoContratado &&
                    PercentualAcrescimo == produto.PercentualAcrescimo &&
                    Valor == produto.Valor;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Nome, TempoContratado, PercentualAcrescimo, Valor, Contratos);
+            return HashCode.Combine(Id, Nome, TempoContratado, PercentualAcrescimo, Valor);
         }
     }
 }

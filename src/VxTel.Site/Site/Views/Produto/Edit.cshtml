@@ -1,0 +1,80 @@
+﻿@model VxTel.Site.Domain.DTO.ProdutoDTO
+
+<div>
+    <div class="row">
+        <h2>Edit</h2>
+    </div>
+
+    <div class="row">
+        <div class="table-responsive-sm col-8">
+            <form asp-action="Edit">
+                <fieldset>
+                    <legend>Produto</legend>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+					<div class="form-group col-2">
+						<label asp-for="Id" class="col-form-label"></label>
+						<input asp-for="Id" type="text" class="form-control text-center" placeholder="" readonly="" />
+					</div>
+
+					<div class="form-group">
+						<label asp-for="Nome" class="col-form-label"></label>
+						<input asp-for="Nome" type="text" class="form-control" placeholder="" />
+						<span asp-validation-for="Nome" class="text-danger"></span>
+					</div>
+					
+					<div class="form-group col-3">
+						<div class="form-group">
+							<label asp-for="TempoContratado" class="col-form-label"></label>
+						</div>
+						<div class="btn-group">
+							<span class="input-group-text">HH:MM</span>
+							<input asp-for="TempoContratado" type="time" value="00:00" class="form-control text-center" />
+						</div>
+						<div class="form-group">
+							<span asp-validation-for="TempoContratado" class="text-danger"></span>
+						</div>
+					</div>
+					
+					<div class="form-group col-2">
+						<div class="form-group">
+							<label asp-for="PercentualAcrescimo" class="col-form-label"></label>
+						</div>
+						<div class="btn-group">
+							<span class="input-group-text">%</span>
+							<input asp-for="PercentualAcrescimo" type="text" class="form-control text-center"
+								   maxlength="6" onkeypress="$(this).mask('##0.00', {reverse: true});" />
+						</div>
+						<div class="form-group">
+							<span asp-validation-for="PercentualAcrescimo" class="text-danger"></span>
+						</div>
+					</div>
+					
+					<div class="form-group col-3">
+						<div class="form-group">
+							<label asp-for="Valor" class="col-form-label"></label>
+						</div>
+						<div class="btn-group">
+							<span class="input-group-text">$</span>
+							<input asp-for="Valor" type="text" class="form-control text-center"
+								   maxlength="11" onkeypress="$(this).mask('##0.00', {reverse: true});" />
+						</div>
+						<div class="form-group">
+							<span asp-validation-for="Valor" class="text-danger"></span>
+						</div>
+					</div>
+
+                    <div class="form-group mt-4">
+                        <input type="submit" asp-action="Edit" class="btn btn-primary" value="Save" />
+                        <a asp-action="Index" class="btn btn-light">Back to List</a>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
